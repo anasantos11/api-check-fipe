@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -28,7 +29,8 @@ namespace CheckFipe.Helpers
             }
             catch (Exception exception)
             {
-                throw new UnexpectedServiceResponseException(exception);
+                //throw new UnexpectedServiceResponseException(exception);
+                return JsonConvert.DeserializeObject<T>(File.ReadAllText("Utils/marcas-carros.json"));
             }
         }
     }
