@@ -14,7 +14,7 @@ namespace CheckFipe.Models
         public static IEnumerable<Ano> Carregar(TipoVeiculoFipe tipoVeiculo, long codigoMarca, long codigoModelo)
         {
             return new ConsultaFipe(tipoVeiculo, AcaoFipe.Veiculo, codigoMarca.ToString(), codigoModelo.ToString())
-                .Carregar()
+                .Carregar<IEnumerable<RetornoFipe>>()
                 .Select(retornoFipe => new Ano()
                 {
                     Codigo = retornoFipe.Codigo,

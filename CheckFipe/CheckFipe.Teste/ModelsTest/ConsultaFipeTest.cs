@@ -40,7 +40,7 @@ namespace CheckFipe.Teste
         public void ValidarCarregamentoDasMarcas(TipoVeiculoFipe tipoVeiculo, string marcaEsperada)
         {
 
-            IEnumerable<RetornoFipe> retorno = new ConsultaFipe(tipoVeiculo, AcaoFipe.Marcas).Carregar();
+            IEnumerable<RetornoFipe> retorno = new ConsultaFipe(tipoVeiculo, AcaoFipe.Marcas).Carregar<IEnumerable<RetornoFipe>>();
             Assert.IsNotNull(retorno);
             Assert.IsTrue(retorno.Count(marca => marca.Nome == marcaEsperada) > 0);
         }

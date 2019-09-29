@@ -14,7 +14,7 @@ namespace CheckFipe.Models
         public static IEnumerable<Marca> Carregar(TipoVeiculoFipe tipoVeiculo)
         {
             return new ConsultaFipe(tipoVeiculo, AcaoFipe.Marcas)
-                .Carregar()
+                .Carregar<IEnumerable<RetornoFipe>>()
                 .Select(retornoFipe => new Marca()
                 {
                     Codigo = Convert.ToInt64(retornoFipe.Codigo),
