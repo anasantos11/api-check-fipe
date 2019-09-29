@@ -14,18 +14,19 @@ namespace CheckFipe.Controllers
     [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
-    public class ConsultaAnoController : ControllerBase
+    public class CarregarDadosVeiculoFipeController : ControllerBase
     {
-        /// <summary> Consulta os anos de um modelo de veículo</summary>
-        /// <remarks> Exemplo requisição:    GET /api/ConsultaAno/Carros/21/4828 </remarks>
+        /// <summary> Carrega os dados de um veículo da tabela Fipe</summary>
+        /// <remarks> Exemplo requisição:    GET /api/CarregarDadosVeiculoFipe/Carros/21/4828/2013-1 </remarks>
         /// <param name="tipoVeiculo">Tipo do Veículo</param>
         /// <param name="codigoMarca">Código da Marca</param>
         /// <param name="codigoModelo">Código do Modelo</param>
-        /// <returns>Lista contendo todos os anos de um modelo de veículo, com o código e descrição do ano.</returns>
+        /// <param name="codigoAno">Código do Ano</param>
+        /// <returns>Dados do veículo na tabela fipe.</returns>
         [HttpGet("{tipoVeiculo}/{codigoMarca}/{codigoModelo}")]
-        public IEnumerable<Ano> Get(TipoVeiculoFipe tipoVeiculo, long codigoMarca, long codigoModelo)
+        public Veiculo Get(TipoVeiculoFipe tipoVeiculo, long codigoMarca, long codigoModelo, string codigoAno)
         {
-            return Ano.Carregar(tipoVeiculo, codigoMarca, codigoModelo);
+            return Veiculo.Carregar(tipoVeiculo, codigoMarca, codigoModelo, codigoAno);
         }
     }
 }

@@ -14,10 +14,10 @@ namespace CheckFipe.Controllers
     [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
-    public class ConsultaModeloController : ControllerBase
+    public class CarregarModelosFipeController : ControllerBase
     {
-        /// <summary> Consulta os modelos de uma marca de veículo</summary>
-        /// <remarks> Exemplo requisição:    GET /api/ConsultaModelo/Carros/21 </remarks>
+        /// <summary> Carrega os modelos de uma marca de veículo da tabela Fipe</summary>
+        /// <remarks> Exemplo requisição:    GET /api/CarregarModelosFipe/Carros/21 </remarks>
         /// <param name="tipoVeiculo">Tipo do Veículo</param>
         /// <param name="codigoMarca">Código da Marca</param>
         /// <returns>Lista contendo todos os modelos da marca, com o código e nome do modelo.</returns>
