@@ -8,12 +8,12 @@ using System.Text;
 
 namespace CheckFipe.Teste
 {
-    public class RetornoFipeTest
+    public class MarcaTest
     {
         [Test]
         public void ValidarSerializacaoObjeto()
         {
-            var retornoFipe = new RetornoFipe()
+            var retornoFipe = new Marca()
             {
                 Codigo = 21,
                 Nome = "Fiat"

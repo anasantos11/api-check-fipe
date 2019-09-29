@@ -12,7 +12,7 @@ using Newtonsoft.Json.Converters;
 namespace CheckFipe.Controllers
 {
     /// <summary> Consulta das marcas dos veículo</summary>
-    /// <remarks> Exemplo requisição:    GET /api/ConsultaMarca/0 </remarks>
+    /// <remarks> Exemplo requisição:    GET /api/ConsultaMarca/Carros </remarks>
     /// <param name="tipoVeiculo">Tipo do Veículo</param>
     /// <returns>Lista contendo todas as marcas do tipo de veículo informado, com o código e nome da marca.</returns>
     [Produces("application/json")]
@@ -21,9 +21,9 @@ namespace CheckFipe.Controllers
     public class ConsultaMarcaController : ControllerBase
     {
         [HttpGet("{tipoVeiculo}")]
-        public IEnumerable<RetornoFipe> Get(TipoVeiculoFipe tipoVeiculo)
+        public IEnumerable<Marca> Get(TipoVeiculoFipe tipoVeiculo)
         {
-            return new ConsultaMarca(tipoVeiculo).Carregar();
+            return new ConsultaFipe(tipoVeiculo, AcaoFipe.Marcas).Carregar();
         }
     }
 }
