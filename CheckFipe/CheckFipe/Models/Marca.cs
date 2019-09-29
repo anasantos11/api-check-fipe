@@ -1,14 +1,24 @@
-﻿using CheckFipe.Interfaces;
-using Newtonsoft.Json;
+﻿using CheckFipe.Enums;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CheckFipe.Models
 {
-    public class Marca : IRetornoFipe
+    public class Marca
     {
-        [JsonProperty("id")]
         public long Codigo { get; set; }
 
-        [JsonProperty("fipe_name")]
         public string Nome { get; set; }
+
+        public static IEnumerable<Marca> Carregar(TipoVeiculoFipe tipoVeiculo)
+        {
+            return new ConsultaFipe(tipoVeiculo, AcaoFipe.Marcas)
+                .Carregar()
+                .Select(retornoFipe => new Marca()
+                {
+                    Codigo = retornoFipe.Codigo,
+                    Nome = retornoFipe.Nome
+                });
+        }
     }
 }

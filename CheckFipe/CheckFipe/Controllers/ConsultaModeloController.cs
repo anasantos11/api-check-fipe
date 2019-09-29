@@ -22,9 +22,9 @@ namespace CheckFipe.Controllers
     public class ConsultaModeloController : ControllerBase
     {
         [HttpGet("{tipoVeiculo}/{codigoMarca}")]
-        public IEnumerable<Marca> Get(TipoVeiculoFipe tipoVeiculo, int codigoMarca)
+        public IEnumerable<Modelo> Get(TipoVeiculoFipe tipoVeiculo, int codigoMarca)
         {
-            return new ConsultaFipe(tipoVeiculo, AcaoFipe.Veiculos, codigoMarca.ToString()).Carregar();
+            return new List<Modelo>();
         }
     }
 }

@@ -2,10 +2,12 @@
 
 namespace CheckFipe.Models
 {
-    public class Modelo
+    public class RetornoFipe
     {
+        [JsonProperty("id")]
         public long Codigo { get; set; }
 
+        [JsonProperty("name")]
         public string Nome { get; set; }
     }
 }

@@ -1,29 +1,25 @@
-﻿using CheckFipe.Models;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿using CheckFipe.Enums;
+using CheckFipe.Models;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
-namespace CheckFipe.Teste
+namespace CheckFipe.Teste.ModelsTest
 {
-    public class MarcaTest
+    class MarcaTest
     {
-        [Test]
-        public void ValidarSerializacaoObjeto()
+
+        [TestCase(TipoVeiculoFipe.Carros, "JEEP")]
+        [TestCase(TipoVeiculoFipe.Motos, "YAMAHA")]
+        [TestCase(TipoVeiculoFipe.Caminhoes, "IVECO")]
+        public void ValidarCarregamentoDasMarcas(TipoVeiculoFipe tipoVeiculo, string marcaEsperada)
         {
-            var retornoFipe = new Marca()
-            {
-                Codigo = 21,
-                Nome = "Fiat"
-            };
 
-            string retornoFipeJson = JsonConvert.SerializeObject(retornoFipe);
-            JObject retornoFipeJbject = JObject.Parse(retornoFipeJson);
-
-            Assert.AreEqual(21, retornoFipeJbject["id"].Value<long>());
-            Assert.AreEqual("Fiat", retornoFipeJbject["fipe_name"].Value<string>());
+            IEnumerable<Marca> retorno = Marca.Carregar(tipoVeiculo);
+            Assert.IsNotNull(retorno);
+            Assert.IsTrue(retorno.Count(marca => marca.Nome == marcaEsperada) > 0);
         }
     }
 }

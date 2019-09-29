@@ -40,9 +40,9 @@ namespace CheckFipe.Models
         #endregion
 
         #region Métodos Públicos
-        public IEnumerable<Marca> Carregar()
+        public IEnumerable<RetornoFipe> Carregar()
         {
-            return new HttpHelper(this.Url).DoRequestGet<IEnumerable<Marca>>();
+            return new HttpHelper(this.Url).DoRequestGet<IEnumerable<RetornoFipe>>();
         }
         #endregion
 
