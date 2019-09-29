@@ -29,8 +29,7 @@ namespace CheckFipe.Helpers
             }
             catch (Exception exception)
             {
-                //throw new UnexpectedServiceResponseException(exception);
-                return JsonConvert.DeserializeObject<T>(File.ReadAllText("Utils/marcas-carros.json"));
+                throw new UnexpectedServiceResponseException(exception);
             }
         }
     }
