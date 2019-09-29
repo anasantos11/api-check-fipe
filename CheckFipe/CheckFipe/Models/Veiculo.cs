@@ -27,8 +27,8 @@ namespace CheckFipe.Models
 
         public static Veiculo Carregar(TipoVeiculoFipe tipoVeiculo, long codigoMarca, long codigoModelo, string codigoAno)
         {
-            VeiculoFipe retornoFipe = new ConsultaFipe(tipoVeiculo, AcaoFipe.Veiculo, codigoMarca.ToString(), codigoModelo.ToString(), codigoAno)
-                .Carregar<VeiculoFipe>();
+            VeiculoRetornoFipe retornoFipe = new ConsultaFipe(tipoVeiculo, AcaoFipe.Veiculo, codigoMarca.ToString(), codigoModelo.ToString(), codigoAno)
+                .Carregar<VeiculoRetornoFipe>();
 
             return new Veiculo()
             {

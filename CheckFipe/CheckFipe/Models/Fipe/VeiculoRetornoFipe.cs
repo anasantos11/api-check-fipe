@@ -6,7 +6,7 @@ using System.Text;
 
 namespace CheckFipe.Teste.Models
 {
-    public class VeiculoFipe : RetornoFipe
+    public class VeiculoRetornoFipe : RetornoFipe
     {
         [JsonProperty("referencia")]
         public string MesReferencia { get; set; }
