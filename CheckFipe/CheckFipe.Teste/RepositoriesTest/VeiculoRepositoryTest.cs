@@ -14,28 +14,26 @@ namespace CheckFipe.Teste.RepositoriesTest
         [Test]
         public void ValidarCarregarVeiculos()
         {
-            using (var context = new CheckFipeContext())
+            using (var context = new CheckFipeContextTest())
             {
-                if (!context.Veiculos.Any(veiculo => veiculo.CodigoMarca == 21 && veiculo.CodigoFipe == "001267-0" && veiculo.CodigoAno == "2013-1"))
-                {
-                    new VeiculoRepository(context, 21, "001267-0", "2013-1").CadastrarVeiculo();
-                    context.SaveChanges();
 
-                    var veiculo = context.Veiculos
-                        .Include(veiculo => veiculo.ConsultasVeiculo)
-                        .FirstOrDefault(veiculo => veiculo.CodigoMarca == 21 && veiculo.CodigoFipe == "001267-0" && veiculo.CodigoAno == "2013-1");
+                new VeiculoRepository(context, 21, "001267-0", "2013-1").CadastrarVeiculo();
+                context.SaveChanges();
 
-                    Assert.IsNotNull(veiculo);
-                    Assert.AreEqual(21, veiculo.CodigoMarca);
-                    Assert.AreEqual("001267-0", veiculo.CodigoFipe);
-                    Assert.AreEqual("2013-1", veiculo.CodigoAno);
-                    Assert.AreEqual(0, veiculo.NumeroDeConsultas);
-                }
+                var veiculo = context.Veiculos
+                    .Include(veiculo => veiculo.ConsultasVeiculo)
+                    .FirstOrDefault(veiculo => veiculo.CodigoMarca == 21 && veiculo.CodigoFipe == "001267-0" && veiculo.CodigoAno == "2013-1");
+
+                Assert.IsNotNull(veiculo);
+                Assert.AreEqual(21, veiculo.CodigoMarca);
+                Assert.AreEqual("001267-0", veiculo.CodigoFipe);
+                Assert.AreEqual("2013-1", veiculo.CodigoAno);
+                Assert.AreEqual(0, veiculo.NumeroDeConsultas);
 
                 var veiculos = new VeiculoRepository(context).CarregarVeiculos();
 
                 Assert.IsNotNull(veiculos);
-                Assert.IsTrue(veiculos.Count() > 1);
+                Assert.AreEqual(1, veiculos.Count());
                 Assert.IsTrue(veiculos.Any(veiculo => veiculo.CodigoMarca == 21 && veiculo.CodigoFipe == "001267-0" && veiculo.CodigoAno == "2013-1"));
             }
         }
@@ -43,7 +41,7 @@ namespace CheckFipe.Teste.RepositoriesTest
         [Test]
         public void ValidarCadastrarVeiculo()
         {
-            using (var context = new CheckFipeContext())
+            using (var context = new CheckFipeContextTest())
             {
                 new VeiculoRepository(context, 101, "827001-5", "1995-1").CadastrarVeiculo();
                 context.SaveChanges();
@@ -63,24 +61,22 @@ namespace CheckFipe.Teste.RepositoriesTest
         [Test]
         public void ValidarCarregarVeiculo()
         {
-            using (var context = new CheckFipeContext())
+            using (var context = new CheckFipeContextTest())
             {
-                if (!context.Veiculos.Any(veiculo => veiculo.CodigoMarca == 109 && veiculo.CodigoFipe == "509001-6" && veiculo.CodigoAno == "1997-3"))
-                {
-                    new VeiculoRepository(context, 109, "509001-6", "1997-3").CadastrarVeiculo();
-                    context.SaveChanges();
 
-                    var veiculoCadastrado = context.Veiculos
-                        .Include(veiculo => veiculo.ConsultasVeiculo)
-                        .FirstOrDefault(veiculo => veiculo.CodigoMarca == 109 && veiculo.CodigoFipe == "509001-6" && veiculo.CodigoAno == "1997-3");
+                new VeiculoRepository(context, 109, "509001-6", "1997-3").CadastrarVeiculo();
+                context.SaveChanges();
 
-                    Assert.IsNotNull(veiculoCadastrado);
-                    Assert.AreEqual(109, veiculoCadastrado.CodigoMarca);
-                    Assert.AreEqual("509001-6", veiculoCadastrado.CodigoFipe);
-                    Assert.AreEqual("1997-3", veiculoCadastrado.CodigoAno);
-                    Assert.AreEqual(0, veiculoCadastrado.NumeroDeConsultas);
-                }
-                
+                var veiculoCadastrado = context.Veiculos
+                    .Include(veiculo => veiculo.ConsultasVeiculo)
+                    .FirstOrDefault(veiculo => veiculo.CodigoMarca == 109 && veiculo.CodigoFipe == "509001-6" && veiculo.CodigoAno == "1997-3");
+
+                Assert.IsNotNull(veiculoCadastrado);
+                Assert.AreEqual(109, veiculoCadastrado.CodigoMarca);
+                Assert.AreEqual("509001-6", veiculoCadastrado.CodigoFipe);
+                Assert.AreEqual("1997-3", veiculoCadastrado.CodigoAno);
+                Assert.AreEqual(0, veiculoCadastrado.NumeroDeConsultas);
+
                 var veiculo = new VeiculoRepository(context, 109, "509001-6", "1997-3").CarregarVeiculo();
 
                 Assert.IsNotNull(veiculo);
