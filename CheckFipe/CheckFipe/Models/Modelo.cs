@@ -1,5 +1,6 @@
 ﻿using CheckFipe.Enums;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -17,7 +18,7 @@ namespace CheckFipe.Models
                 .Carregar()
                 .Select(retornoFipe => new Modelo()
                 {
-                    Codigo = retornoFipe.Codigo,
+                    Codigo = Convert.ToInt64(retornoFipe.Codigo),
                     Nome = retornoFipe.Nome
                 });
         }

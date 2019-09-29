@@ -1,4 +1,5 @@
 ﻿using CheckFipe.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -16,7 +17,7 @@ namespace CheckFipe.Models
                 .Carregar()
                 .Select(retornoFipe => new Marca()
                 {
-                    Codigo = retornoFipe.Codigo,
+                    Codigo = Convert.ToInt64(retornoFipe.Codigo),
                     Nome = retornoFipe.Nome
                 });
         }

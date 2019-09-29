@@ -15,14 +15,14 @@ namespace CheckFipe.Teste
         {
             var retornoFipe = new RetornoFipe()
             {
-                Codigo = 21,
+                Codigo = "21",
                 Nome = "Fiat"
             };
 
             string retornoFipeJson = JsonConvert.SerializeObject(retornoFipe);
             JObject retornoFipeJbject = JObject.Parse(retornoFipeJson);
 
-            Assert.AreEqual(21, retornoFipeJbject["id"]?.Value<long>());
+            Assert.AreEqual("21", retornoFipeJbject["id"]?.Value<string>());
             Assert.AreEqual("Fiat", retornoFipeJbject["name"]?.Value<string>());
         }
 
@@ -33,7 +33,7 @@ namespace CheckFipe.Teste
 
             RetornoFipe retorno = JsonConvert.DeserializeObject<RetornoFipe>(jsonRetornoFipe);
             Assert.IsNotNull(retorno);
-            Assert.AreEqual(21, retorno.Codigo);
+            Assert.AreEqual("21", retorno.Codigo);
             Assert.AreEqual("Fiat", retorno.Nome);
         }
     }

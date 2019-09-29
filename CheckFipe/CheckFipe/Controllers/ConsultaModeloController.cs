@@ -22,7 +22,7 @@ namespace CheckFipe.Controllers
         /// <param name="codigoMarca">Código da Marca</param>
         /// <returns>Lista contendo todos os modelos da marca, com o código e nome do modelo.</returns>
         [HttpGet("{tipoVeiculo}/{codigoMarca}")]
-        public IEnumerable<Modelo> Get(TipoVeiculoFipe tipoVeiculo, int codigoMarca)
+        public IEnumerable<Modelo> Get(TipoVeiculoFipe tipoVeiculo, long codigoMarca)
         {
             return Modelo.Carregar(tipoVeiculo, codigoMarca);
         }
