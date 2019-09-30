@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using CheckFipe.Context;
 using CheckFipe.Enums;
 using CheckFipe.Models;
+using CheckFipe.Teste.Models;
+using CheckFipe.UseCase;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Converters;
@@ -16,6 +19,13 @@ namespace CheckFipe.Controllers
     [ApiController]
     public class FipeController : ControllerBase
     {
+        private readonly CheckFipeContext Context;
+
+        public FipeController(CheckFipeContext context)
+        {
+            this.Context = context;
+        }
+
         /// <summary> Carrega as marcas dos veículo da tabela Fipe.</summary>
         /// <remarks> Exemplo requisição:    GET /api/Fipe/CarregarMarcas/Carros </remarks>
         /// <param name="tipoVeiculo">Tipo do Veículo</param>
@@ -50,16 +60,16 @@ namespace CheckFipe.Controllers
         }
 
         /// <summary> Carrega os dados de um veículo da tabela Fipe</summary>
-        /// <remarks> Exemplo requisição:    GET /api/Fipe/CarregarDadosVeiculo/Carros/21/4828/2013-1 </remarks>
+        /// <remarks> Exemplo requisição:    GET /api/CheckFipe/BuscarVeiculo/Carros/21/4828/2013-1 </remarks>
         /// <param name="tipoVeiculo">Tipo do Veículo</param>
         /// <param name="codigoMarca">Código da Marca</param>
         /// <param name="codigoModelo">Código do Modelo</param>
         /// <param name="codigoAno">Código do Ano</param>
         /// <returns>Dados do veículo na tabela fipe.</returns>
         [HttpGet("{tipoVeiculo}/{codigoMarca}/{codigoModelo}/{codigoAno}")]
-        public Veiculo CarregarDadosVeiculo(TipoVeiculoFipe tipoVeiculo, long codigoMarca, long codigoModelo, string codigoAno)
+        public VeiculoRetornoFipe BuscarVeiculo(TipoVeiculoFipe tipoVeiculo, long codigoMarca, long codigoModelo, string codigoAno)
         {
-            return Veiculo.Carregar(tipoVeiculo, codigoMarca, codigoModelo, codigoAno);
+            return new BuscarVeiculoTabelaFipe(this.Context).Carregar(tipoVeiculo, codigoMarca, codigoModelo, codigoAno);
         }
     }
 }
