@@ -1,10 +1,6 @@
 ﻿using CheckFipe.Contracts;
 using CheckFipe.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CheckFipe.Context
 {
@@ -15,7 +11,7 @@ namespace CheckFipe.Context
         }
 
         public CheckFipeContext(DbContextOptions<CheckFipeContext> options) : base(options)
-        { 
+        {
         }
 
         public DbSet<ConsultaVeiculo> ConsultasVeiculo { get; set; }

@@ -1,7 +1,5 @@
-﻿using CheckFipe.Enums;
-using CheckFipe.Exceptions;
+﻿using CheckFipe.Exceptions;
 using CheckFipe.Helpers;
-using CheckFipe.Models;
 using NUnit.Framework;
 
 namespace CheckFipe.Teste

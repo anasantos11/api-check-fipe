@@ -31,7 +31,7 @@ namespace CheckFipe.Teste
                 .Where(metodo => metodo.Name == "CarregarUrl" && metodo.IsPrivate)
                 .First();
 
-            return  (string)metodoCarregarUrl.Invoke(consultaFipe, null);
+            return (string)metodoCarregarUrl.Invoke(consultaFipe, null);
         }
 
         [TestCase(TipoVeiculoFipe.Carros, "JEEP")]

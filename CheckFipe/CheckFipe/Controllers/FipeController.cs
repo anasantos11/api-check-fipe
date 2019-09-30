@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using CheckFipe.Context;
+﻿using CheckFipe.Context;
 using CheckFipe.Enums;
 using CheckFipe.Models;
 using CheckFipe.UseCase;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace CheckFipe.Controllers
 {

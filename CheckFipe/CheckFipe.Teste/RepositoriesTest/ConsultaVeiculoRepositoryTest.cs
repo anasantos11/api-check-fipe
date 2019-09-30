@@ -3,10 +3,7 @@ using CheckFipe.Models;
 using CheckFipe.Repositories;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace CheckFipe.Teste.RepositoriesTest
 {

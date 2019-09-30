@@ -1,6 +1,5 @@
 ﻿using CheckFipe.Enums;
 using CheckFipe.Helpers;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace CheckFipe.Models

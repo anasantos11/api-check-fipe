@@ -1,10 +1,8 @@
 ﻿using CheckFipe.Contracts;
 using CheckFipe.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace CheckFipe.Repositories
 {
@@ -37,8 +35,8 @@ namespace CheckFipe.Repositories
         public Veiculo CarregarVeiculo()
         {
             return this.VeiculoContext.Veiculos
-                    .Where(veiculo => veiculo.CodigoMarca == this.CodigoMarca && 
-                                                veiculo.CodigoFipe == this.CodigoFipe && 
+                    .Where(veiculo => veiculo.CodigoMarca == this.CodigoMarca &&
+                                                veiculo.CodigoFipe == this.CodigoFipe &&
                                                 veiculo.CodigoAno == this.CodigoAno)
                     .FirstOrDefault();
         }
