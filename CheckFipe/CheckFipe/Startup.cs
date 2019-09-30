@@ -4,10 +4,12 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using CheckFipe.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -28,7 +30,7 @@ namespace CheckFipe
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-
+            services.AddDbContext<CheckFipeContext>(options => options.UseInMemoryDatabase("CheckFipeContext"));
             services.AddSwaggerGen(configSwagger =>
             {
                 configSwagger.SwaggerDoc("v1",
