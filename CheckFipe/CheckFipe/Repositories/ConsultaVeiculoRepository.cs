@@ -22,7 +22,7 @@ namespace CheckFipe.Repositories
             return this.ConsultaVeiculoContext.ConsultasVeiculo.Include(consulta => consulta.Veiculo);
         }
 
-        public void CadastrarConsultaVeiculo(long codigoMarca, string codigoFipe, string codigoAno)
+        public void CadastrarConsultaVeiculo(long codigoMarca, string codigoFipe, string codigoAno, string anoModelo, string combustivel, string preco)
         {
             VeiculoRepository veiculoRepository = new VeiculoRepository(this.ConsultaVeiculoContext, codigoMarca, codigoFipe, codigoAno);
             Veiculo veiculo = veiculoRepository.CarregarVeiculo();
@@ -32,7 +32,7 @@ namespace CheckFipe.Repositories
                 this.ConsultaVeiculoContext.ConsultasVeiculo.Add(new ConsultaVeiculo()
                 {
                     DataConsultaVeiculo = DateTime.Now,
-                    Veiculo = veiculoRepository.CadastrarVeiculo()
+                    Veiculo = veiculoRepository.CadastrarVeiculo(anoModelo, combustivel, preco)
                 });
             }
             else
@@ -43,6 +43,7 @@ namespace CheckFipe.Repositories
                     Veiculo = veiculo
                 });
             }
+            this.ConsultaVeiculoContext.SaveChanges();
         }
     }
 }

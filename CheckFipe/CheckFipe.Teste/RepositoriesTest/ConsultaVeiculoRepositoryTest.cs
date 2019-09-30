@@ -17,8 +17,7 @@ namespace CheckFipe.Teste.RepositoriesTest
         {
             using (var context = new CheckFipeContextTest())
             {
-                new ConsultaVeiculoRepository(context).CadastrarConsultaVeiculo(21, "001267-0", "2013-1");
-                context.SaveChanges();
+                new ConsultaVeiculoRepository(context).CadastrarConsultaVeiculo(21, "001267-0", "2013-1", "2013", "gasolina", "R$ 25.000,00");
 
                 var consultas = context.ConsultasVeiculo.Include(consulta => consulta.Veiculo);
                 var consultaVeiculo = consultas
@@ -45,8 +44,7 @@ namespace CheckFipe.Teste.RepositoriesTest
         {
             using (var context = new CheckFipeContextTest())
             {
-                new ConsultaVeiculoRepository(context).CadastrarConsultaVeiculo(101, "827001-5", "1995-1");
-                context.SaveChanges();
+                new ConsultaVeiculoRepository(context).CadastrarConsultaVeiculo(101, "827001-5", "1995-1", "1995", "diesel", "R$ 15.000,00");
 
                 var consultas = new ConsultaVeiculoRepository(context).CarregarConsultasVeiculos();
                 var consultaVeiculo = consultas

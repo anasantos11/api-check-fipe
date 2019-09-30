@@ -17,7 +17,7 @@ namespace CheckFipe.Teste.RepositoriesTest
             using (var context = new CheckFipeContextTest())
             {
 
-                new VeiculoRepository(context, 21, "001267-0", "2013-1").CadastrarVeiculo();
+                new VeiculoRepository(context, 21, "001267-0", "2013-1").CadastrarVeiculo("2013", "gasolina", "R$ 25.000,00");
                 context.SaveChanges();
 
                 var veiculo = context.Veiculos
@@ -43,7 +43,7 @@ namespace CheckFipe.Teste.RepositoriesTest
         {
             using (var context = new CheckFipeContextTest())
             {
-                new VeiculoRepository(context, 101, "827001-5", "1995-1").CadastrarVeiculo();
+                new VeiculoRepository(context, 101, "827001-5", "1995-1").CadastrarVeiculo("1995", "diesel", "R$ 15.000,00");
                 context.SaveChanges();
 
                 var veiculo = context.Veiculos
@@ -64,7 +64,7 @@ namespace CheckFipe.Teste.RepositoriesTest
             using (var context = new CheckFipeContextTest())
             {
 
-                new VeiculoRepository(context, 109, "509001-6", "1997-3").CadastrarVeiculo();
+                new VeiculoRepository(context, 109, "509001-6", "1997-3").CadastrarVeiculo("1997", "diesel", "R$ 20.000,00");
                 context.SaveChanges();
 
                 var veiculoCadastrado = context.Veiculos
