@@ -28,5 +28,14 @@ namespace CheckFipe.Controllers
         {
             return new CarregarConsultasVeiculosRealizadas(this.Context).Carregar();
         }
+
+        /// <summary> Carrega os 3 veículos mais procurados.</summary>
+        /// <remarks> Exemplo requisição: GET /api/CheckFipe/CarregarVeiculosMaisProcurados </remarks>
+        /// <returns> Lista contendo os três veículos mais procurados.</returns>
+        [HttpGet]
+        public IEnumerable<Veiculo> CarregarVeiculosMaisProcurados()
+        {
+            return new CarregarVeiculosMaisProcurados(this.Context).Carregar();
+        }
     }
 }
