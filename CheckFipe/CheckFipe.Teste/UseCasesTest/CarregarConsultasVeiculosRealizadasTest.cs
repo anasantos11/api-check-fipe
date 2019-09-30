@@ -1,12 +1,10 @@
 ﻿using CheckFipe.Context;
 using CheckFipe.Enums;
-using CheckFipe.Teste.Models;
+using CheckFipe.Models;
 using CheckFipe.UseCase;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace CheckFipe.Teste.UseCasesTest
 {

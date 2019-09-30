@@ -1,9 +1,7 @@
 ﻿using CheckFipe.Contracts;
+using CheckFipe.Entities;
 using CheckFipe.Repositories;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CheckFipe.UseCase
 {
@@ -15,7 +13,7 @@ namespace CheckFipe.UseCase
         }
         private ICheckFipeContext Context { get; }
 
-        public IEnumerable<CheckFipe.Entities.ConsultaVeiculo> Carregar()
+        public IEnumerable<ConsultaVeiculo> Carregar()
         {
             return new ConsultaVeiculoRepository(this.Context).CarregarConsultasVeiculos();
         }

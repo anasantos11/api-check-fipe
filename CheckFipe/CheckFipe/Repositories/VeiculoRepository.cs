@@ -43,7 +43,7 @@ namespace CheckFipe.Repositories
                     .FirstOrDefault();
         }
 
-        public Veiculo CadastrarVeiculo(string anoModelo, string combustivel, string preco)
+        public Veiculo CadastrarVeiculo(string anoModelo, string combustivel, string preco, string descricaoMarca, string descricaoModelo)
         {
             var veiculo = new Veiculo()
             {
@@ -52,10 +52,13 @@ namespace CheckFipe.Repositories
                 CodigoAno = this.CodigoAno,
                 AnoModelo = anoModelo,
                 DescricaoCombustivel = combustivel,
-                Preco = preco
+                Preco = preco,
+                DescricaoMarca = descricaoMarca,
+                DescricaoModelo = descricaoModelo
 
             };
             this.VeiculoContext.Veiculos.Add(veiculo);
+            this.VeiculoContext.SaveChanges();
             return veiculo;
         }
     }

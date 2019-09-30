@@ -1,10 +1,6 @@
-﻿using CheckFipe.Models;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Newtonsoft.Json;
 
-namespace CheckFipe.Teste.Models
+namespace CheckFipe.Models
 {
     public class VeiculoRetornoFipe : RetornoFipe
     {
@@ -28,8 +24,5 @@ namespace CheckFipe.Teste.Models
 
         [JsonProperty("preco")]
         public string Preco { get; set; }
-
-        [JsonProperty("key")]
-        public string Chave { get; set; }
     }
 }

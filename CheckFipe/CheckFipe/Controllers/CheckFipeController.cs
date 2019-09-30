@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using CheckFipe.Context;
 using CheckFipe.Entities;
-using CheckFipe.Enums;
-using CheckFipe.Teste.Models;
 using CheckFipe.UseCase;
 using Microsoft.AspNetCore.Mvc;
 
