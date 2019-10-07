@@ -23,8 +23,14 @@ namespace CheckFipe
 
         public void ConfigureServices(IServiceCollection services)
         {
+                services.AddCors(option => {
+                option.AddPolicy("AllowSpecificOrigin", policy => policy.WithOrigins("http://localhost:8080"));
+                option.AddPolicy("AllowAnyMethod", policy => policy.AllowAnyMethod());
+            });
             services.AddControllers();
             services.AddDbContext<CheckFipeContext>(options => options.UseInMemoryDatabase("CheckFipeContext"));
+
+
             services.AddSwaggerGen(configSwagger =>
             {
                 configSwagger.SwaggerDoc("v1",
@@ -42,7 +48,9 @@ namespace CheckFipe
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 configSwagger.IncludeXmlComments(xmlPath);
+#pragma warning disable CS0618 // Type or member is obsolete
                 configSwagger.DescribeAllEnumsAsStrings();
+#pragma warning restore CS0618 // Type or member is obsolete
             });
         }
 
@@ -52,6 +60,8 @@ namespace CheckFipe
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors("AllowSpecificOrigin");
 
             app.UseHttpsRedirection();
 
@@ -63,7 +73,7 @@ namespace CheckFipe
             {
                 endpoints.MapControllers();
             });
-
+           
             app.UseSwagger();
             app.UseSwaggerUI(configSwagger =>
             {
