@@ -18,7 +18,8 @@ namespace CheckFipe.Models
                 {
                     Codigo = retornoFipe.Codigo,
                     Nome = retornoFipe.Nome
-                });
+                })
+                .OrderBy(retornoFipe => retornoFipe.Nome);
         }
     }
 }

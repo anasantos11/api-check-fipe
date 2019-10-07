@@ -19,7 +19,8 @@ namespace CheckFipe.Models
                 {
                     Codigo = Convert.ToInt64(retornoFipe.Codigo),
                     Nome = retornoFipe.Nome
-                });
+                })
+                .OrderBy(retornoFipe => retornoFipe.Nome);
         }
     }
 }
