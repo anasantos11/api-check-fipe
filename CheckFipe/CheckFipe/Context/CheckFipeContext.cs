@@ -30,13 +30,13 @@ namespace CheckFipe.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Veiculo>().ToTable("Veiculo");
-            modelBuilder.Entity<Veiculo>().HasKey(veiculo => veiculo.IdVeiculo);
+            modelBuilder.Entity<Veiculo>().HasKey(veiculo => veiculo.Id);
             modelBuilder.Entity<Veiculo>().Ignore(veiculo => veiculo.NumeroDeConsultas);
 
             modelBuilder.Entity<ConsultaVeiculo>().ToTable("ConsultaVeiculo");
-            modelBuilder.Entity<ConsultaVeiculo>().HasKey(consultaVeiculo => consultaVeiculo.IdConsultaVeiculo);
+            modelBuilder.Entity<ConsultaVeiculo>().HasKey(consultaVeiculo => consultaVeiculo.Id);
 
-            modelBuilder.Entity<ConsultaVeiculo>().HasKey(consultaVeiculo => consultaVeiculo.IdConsultaVeiculo);
+            modelBuilder.Entity<ConsultaVeiculo>().HasKey(consultaVeiculo => consultaVeiculo.Id);
             modelBuilder.Entity<ConsultaVeiculo>()
                 .HasOne(consultaVeiculo => consultaVeiculo.Veiculo)
                 .WithMany(veiculo => veiculo.ConsultasVeiculo)

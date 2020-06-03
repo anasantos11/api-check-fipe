@@ -38,7 +38,7 @@ namespace CheckFipe.Teste.RepositoriesTest
                 Assert.IsNotNull(consultas);
                 Assert.AreEqual(1, consultas.Count());
                 Assert.IsNotNull(consultaVeiculo);
-                Assert.AreEqual(1, consultaVeiculo.IdConsultaVeiculo);
+                Assert.AreEqual(1, consultaVeiculo.Id);
                 Assert.AreEqual(1, consultaVeiculo.IdVeiculo);
                 Assert.AreEqual(21, consultaVeiculo.Veiculo.CodigoMarca);
                 Assert.AreEqual("001267-0", consultaVeiculo.Veiculo.CodigoFipe);
@@ -76,7 +76,7 @@ namespace CheckFipe.Teste.RepositoriesTest
                 Assert.IsNotNull(consultas);
                 Assert.AreEqual(1, consultas.Count());
                 Assert.IsNotNull(consultaVeiculo);
-                Assert.AreEqual(1, consultaVeiculo.IdConsultaVeiculo);
+                Assert.AreEqual(1, consultaVeiculo.Id);
                 Assert.AreEqual(1, consultaVeiculo.IdVeiculo);
                 Assert.AreEqual(101, consultaVeiculo.Veiculo.CodigoMarca);
                 Assert.AreEqual("827001-5", consultaVeiculo.Veiculo.CodigoFipe);

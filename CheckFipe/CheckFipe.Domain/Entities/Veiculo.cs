@@ -3,9 +3,8 @@ using System.Linq;
 
 namespace CheckFipe.Domain.Entities
 {
-    public class Veiculo
+    public class Veiculo : BaseEntity
     {
-        public long IdVeiculo { get; set; }
         public long CodigoMarca { get; set; }
         public string CodigoFipe { get; set; }
         public string CodigoAno { get; set; }

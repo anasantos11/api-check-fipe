@@ -3,13 +3,11 @@
 namespace CheckFipe.Domain.Entities
 {
 
-    public class ConsultaVeiculo
+    public class ConsultaVeiculo : BaseEntity
     {
-        public long IdConsultaVeiculo { get; set; }
-
         public DateTime DataConsultaVeiculo { get; set; }
 
-        public long IdVeiculo { get; set; }
+        public int IdVeiculo { get; set; }
 
         public Veiculo Veiculo { get; set; }
     }
