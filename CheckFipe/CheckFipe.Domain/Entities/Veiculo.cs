@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace CheckFipe.Domain.Entities
@@ -22,7 +23,28 @@ namespace CheckFipe.Domain.Entities
             }
         }
 
-        public IEnumerable<ConsultaVeiculo> ConsultasVeiculo { get; set; }
+        public IList<ConsultaVeiculo> ConsultasVeiculo { get; set; }
 
+        public Veiculo() { }
+
+        public Veiculo(long codigoMarca, string codigoFipe, string codigoAno, string anoModelo, string combustivel, string preco, string descricaoMarca, string descricaoModelo)
+        {
+            this.CodigoMarca = codigoMarca;
+            this.CodigoFipe = codigoFipe;
+            this.CodigoAno = codigoAno;
+            this.Preco = preco;
+            this.DescricaoCombustivel = combustivel;
+            this.AnoModelo = anoModelo;
+            this.DescricaoMarca = descricaoMarca;
+            this.DescricaoModelo = descricaoModelo;
+        }
+
+        public void AddConsultaVeiculo()
+        {
+            this.ConsultasVeiculo.Add(new ConsultaVeiculo()
+            {
+                DataConsultaVeiculo = DateTime.Now
+            });
+        }
     }
 }

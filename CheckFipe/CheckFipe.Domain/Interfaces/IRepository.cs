@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace CheckFipe.Domain.Interfaces
 {
-    public interface IRepository<T> where T: BaseEntity
+    public interface IRepository<T> where T : BaseEntity
     {
         void Cadastrar(T objeto);
-        IList<T> Carregar();
+        IEnumerable<T> Carregar();
     }
 }
