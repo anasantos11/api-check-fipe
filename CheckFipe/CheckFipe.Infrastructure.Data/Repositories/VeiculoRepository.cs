@@ -22,10 +22,25 @@ namespace CheckFipe.Infrastructure.Data.Repositories
             this.VeiculoContext.Veiculos.Add(objeto);
         }
 
+        public void Atualizar(Veiculo objeto)
+        {
+            this.VeiculoContext.Entry(objeto).State = EntityState.Modified;
+        }
+
         public IEnumerable<Veiculo> Carregar()
         {
             return this.VeiculoContext.Veiculos
                 .Include(veiculo => veiculo.ConsultasVeiculo);
         }
+
+        public Veiculo Carregar(long codigoMarca, string codigoFipe, string codigoAno)
+        {
+            return this.VeiculoContext.Veiculos
+                 .Where(veiculo => veiculo.CodigoMarca == codigoMarca &&
+                                             veiculo.CodigoFipe == codigoFipe &&
+                                             veiculo.CodigoAno == codigoAno)
+                 .FirstOrDefault();
+        }
+
     }
 }

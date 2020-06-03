@@ -1,6 +1,6 @@
 ﻿using CheckFipe.Domain.Entities;
 using CheckFipe.Infrastructure.Data.Interfaces;
-using CheckFipe.Repositories;
+using CheckFipe.Infrastructure.Data.Repositories;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -17,7 +17,7 @@ namespace CheckFipe.UseCase
         public IEnumerable<Veiculo> Carregar()
         {
             return new VeiculoRepository(this.Context)
-                .CarregarVeiculos()
+                .Carregar()
                 .OrderByDescending(veiculo => veiculo.NumeroDeConsultas)
                 .Take(3);
         }

@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckFipe.Teste", "CheckFip
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckFipe.Domain", "CheckFipe.Domain\CheckFipe.Domain.csproj", "{F9719FCD-CAA1-4533-B8B7-09B89B3C104C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckFipe.Infrastructure.Data", "CheckFipe.Infrastructure.Data\CheckFipe.Infrastructure.Data.csproj", "{2BCF914D-5573-4863-8F0B-84F419728501}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckFipe.Infrastructure.Data", "CheckFipe.Infrastructure.Data\CheckFipe.Infrastructure.Data.csproj", "{2BCF914D-5573-4863-8F0B-84F419728501}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

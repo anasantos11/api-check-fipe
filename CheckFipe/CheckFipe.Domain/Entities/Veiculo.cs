@@ -41,6 +41,11 @@ namespace CheckFipe.Domain.Entities
 
         public void AddConsultaVeiculo()
         {
+            if(this.ConsultasVeiculo == null)
+            {
+                this.ConsultasVeiculo = new List<ConsultaVeiculo>();
+            }
+
             this.ConsultasVeiculo.Add(new ConsultaVeiculo()
             {
                 DataConsultaVeiculo = DateTime.Now

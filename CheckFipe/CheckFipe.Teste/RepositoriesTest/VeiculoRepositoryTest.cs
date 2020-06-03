@@ -1,5 +1,6 @@
 ﻿using CheckFipe.Context;
-using CheckFipe.Repositories;
+using CheckFipe.Domain.Entities;
+using CheckFipe.Infrastructure.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
 using System.Linq;
@@ -14,7 +15,9 @@ namespace CheckFipe.Teste.RepositoriesTest
             using (var context = new CheckFipeContextTest())
             {
 
-                new VeiculoRepository(context, 21, "001267-0", "2013-1").CadastrarVeiculo("2013", "gasolina", "R$ 25.000,00", "Fiat", "Palio 1.0 ECONOMY Fire Flex 8V 4p");
+                new VeiculoRepository(context)
+                    .Cadastrar(new Veiculo(21, "001267-0", "2013-1", "2013", "gasolina", "R$ 25.000,00", "Fiat", "Palio 1.0 ECONOMY Fire Flex 8V 4p"));
+                context.SaveChanges();
 
                 var veiculo = context.Veiculos
                     .Include(veiculo => veiculo.ConsultasVeiculo)
@@ -32,7 +35,7 @@ namespace CheckFipe.Teste.RepositoriesTest
 
                 Assert.AreEqual(0, veiculo.NumeroDeConsultas);
 
-                var veiculos = new VeiculoRepository(context).CarregarVeiculos();
+                var veiculos = new VeiculoRepository(context).Carregar();
 
                 Assert.IsNotNull(veiculos);
                 Assert.AreEqual(1, veiculos.Count());
@@ -45,7 +48,9 @@ namespace CheckFipe.Teste.RepositoriesTest
         {
             using (var context = new CheckFipeContextTest())
             {
-                new VeiculoRepository(context, 101, "827001-5", "1995-1").CadastrarVeiculo("1995", "diesel", "R$ 15.000,00", "YAMAHA", "750 VIRAGO");
+                new VeiculoRepository(context)
+                    .Cadastrar(new Veiculo(101, "827001-5", "1995-1", "1995", "diesel", "R$ 15.000,00", "YAMAHA", "750 VIRAGO"));
+                context.SaveChanges();
 
                 var veiculo = context.Veiculos
                     .Include(veiculo => veiculo.ConsultasVeiculo)
@@ -67,24 +72,24 @@ namespace CheckFipe.Teste.RepositoriesTest
         [Test]
         public void ValidarCarregarVeiculo()
         {
-            using (var context = new CheckFipeContextTest())
-            {
+            using var context = new CheckFipeContextTest();
 
-                new VeiculoRepository(context, 109, "509001-6", "1997-3").CadastrarVeiculo("1997", "diesel", "R$ 20.000,00", "MERCEDES-BENZ", "1114 3-Eixos 2p (diesel)");
+            new VeiculoRepository(context)
+                .Cadastrar(new Veiculo(109, "509001-6", "1997-3", "1997", "diesel", "R$ 20.000,00", "MERCEDES-BENZ", "1114 3-Eixos 2p (diesel)"));
+            context.SaveChanges();
 
-                var veiculo = new VeiculoRepository(context, 109, "509001-6", "1997-3").CarregarVeiculo();
+            var veiculo = new VeiculoRepository(context).Carregar(109, "509001-6", "1997-3");
 
-                Assert.IsNotNull(veiculo);
-                Assert.AreEqual(109, veiculo.CodigoMarca);
-                Assert.AreEqual("509001-6", veiculo.CodigoFipe);
-                Assert.AreEqual("1997-3", veiculo.CodigoAno);
-                Assert.AreEqual("1997", veiculo.AnoModelo);
-                Assert.AreEqual("diesel", veiculo.DescricaoCombustivel);
-                Assert.AreEqual("R$ 20.000,00", veiculo.Preco);
-                Assert.AreEqual("MERCEDES-BENZ", veiculo.DescricaoMarca);
-                Assert.AreEqual("1114 3-Eixos 2p (diesel)", veiculo.DescricaoModelo);
-                Assert.AreEqual(0, veiculo.NumeroDeConsultas);
-            }
+            Assert.IsNotNull(veiculo);
+            Assert.AreEqual(109, veiculo.CodigoMarca);
+            Assert.AreEqual("509001-6", veiculo.CodigoFipe);
+            Assert.AreEqual("1997-3", veiculo.CodigoAno);
+            Assert.AreEqual("1997", veiculo.AnoModelo);
+            Assert.AreEqual("diesel", veiculo.DescricaoCombustivel);
+            Assert.AreEqual("R$ 20.000,00", veiculo.Preco);
+            Assert.AreEqual("MERCEDES-BENZ", veiculo.DescricaoMarca);
+            Assert.AreEqual("1114 3-Eixos 2p (diesel)", veiculo.DescricaoModelo);
+            Assert.AreEqual(0, veiculo.NumeroDeConsultas);
         }
     }
 }
