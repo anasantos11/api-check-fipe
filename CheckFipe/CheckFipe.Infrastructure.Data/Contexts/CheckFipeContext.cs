@@ -25,6 +25,8 @@ namespace CheckFipe.Infrastructure.Data.Contexts
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Veiculo>(new VeiculoMap().Configure);
             modelBuilder.Entity<ConsultaVeiculo>(new ConsultaVeiculoMap().Configure);
+            modelBuilder.Entity<Modelo>(new ModeloMap().Configure);
+            modelBuilder.Entity<Marca>(new MarcaMap().Configure);
         }
     }
 }
