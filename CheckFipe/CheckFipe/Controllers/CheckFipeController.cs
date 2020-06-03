@@ -1,5 +1,5 @@
-﻿using CheckFipe.Context;
-using CheckFipe.Domain.Entities;
+﻿using CheckFipe.Domain.Entities;
+using CheckFipe.Infrastructure.Data.Contexts;
 using CheckFipe.UseCase;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 
-namespace CheckFipe.Contracts
+namespace CheckFipe.Infrastructure.Data.Interfaces
 {
     public interface ICheckFipeContext : IDisposable
     {

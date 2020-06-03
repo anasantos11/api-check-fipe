@@ -1,4 +1,4 @@
-using CheckFipe.Context;
+using CheckFipe.Infrastructure.Data.Contexts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -23,7 +23,8 @@ namespace CheckFipe
 
         public void ConfigureServices(IServiceCollection services)
         {
-                services.AddCors(option => {
+            services.AddCors(option =>
+            {
                 option.AddPolicy("AllowSpecificOrigin", policy => policy.WithOrigins("http://localhost:8080"));
                 option.AddPolicy("AllowAnyMethod", policy => policy.AllowAnyMethod());
             });
@@ -73,7 +74,7 @@ namespace CheckFipe
             {
                 endpoints.MapControllers();
             });
-           
+
             app.UseSwagger();
             app.UseSwaggerUI(configSwagger =>
             {

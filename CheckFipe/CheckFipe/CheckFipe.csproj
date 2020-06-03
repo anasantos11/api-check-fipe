@@ -33,6 +33,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CheckFipe.Domain\CheckFipe.Domain.csproj" />
+    <ProjectReference Include="..\CheckFipe.Infrastructure.Data\CheckFipe.Infrastructure.Data.csproj" />
   </ItemGroup>
 
 </Project>

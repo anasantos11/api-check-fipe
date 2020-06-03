@@ -1,4 +1,6 @@
-﻿namespace CheckFipe.Context
+﻿using CheckFipe.Infrastructure.Data.Contexts;
+
+namespace CheckFipe.Context
 {
     public class CheckFipeContextTest : CheckFipeContext
     {

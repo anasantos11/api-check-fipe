@@ -1,5 +1,5 @@
-﻿using CheckFipe.Context;
-using CheckFipe.Enums;
+﻿using CheckFipe.Enums;
+using CheckFipe.Infrastructure.Data.Contexts;
 using CheckFipe.Models;
 using CheckFipe.UseCase;
 using Microsoft.AspNetCore.Mvc;

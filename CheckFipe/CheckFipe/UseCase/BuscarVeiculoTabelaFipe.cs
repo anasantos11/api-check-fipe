@@ -1,5 +1,5 @@
-﻿using CheckFipe.Contracts;
-using CheckFipe.Enums;
+﻿using CheckFipe.Enums;
+using CheckFipe.Infrastructure.Data.Interfaces;
 using CheckFipe.Models;
 using CheckFipe.Repositories;
 

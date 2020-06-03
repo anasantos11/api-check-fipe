@@ -1,5 +1,5 @@
-﻿using CheckFipe.Contracts;
-using CheckFipe.Domain.Entities;
+﻿using CheckFipe.Domain.Entities;
+using CheckFipe.Infrastructure.Data.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
