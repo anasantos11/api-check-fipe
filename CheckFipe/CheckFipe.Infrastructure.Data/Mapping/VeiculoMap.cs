@@ -11,6 +11,10 @@ namespace CheckFipe.Infrastructure.Data.Mapping
             builder.ToTable("Veiculo");
             builder.HasKey(veiculo => veiculo.Id);
             builder.Ignore(veiculo => veiculo.NumeroDeConsultas);
+            builder
+                .HasOne(veiculo => veiculo.Modelo)
+                .WithMany(modelo => modelo.Veiculos)
+                .HasForeignKey(veiculo => veiculo.IdModelo);
         }
     }
 }

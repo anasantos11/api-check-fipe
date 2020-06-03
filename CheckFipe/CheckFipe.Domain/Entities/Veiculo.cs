@@ -6,14 +6,13 @@ namespace CheckFipe.Domain.Entities
 {
     public class Veiculo : BaseEntity
     {
-        public long CodigoMarca { get; set; }
         public string CodigoFipe { get; set; }
-        public string CodigoAno { get; set; }
+        public long IdModelo { get; set; }
+        public Modelo Modelo { get; set; }
+        public string CodigoAnoModelo { get; set; }
+        public string AnoModelo { get; set; }
         public string Preco { get; set; }
         public string DescricaoCombustivel { get; set; }
-        public string AnoModelo { get; set; }
-        public string DescricaoMarca { get; set; }
-        public string DescricaoModelo { get; set; }
 
         public long NumeroDeConsultas
         {
@@ -25,23 +24,22 @@ namespace CheckFipe.Domain.Entities
 
         public IList<ConsultaVeiculo> ConsultasVeiculo { get; set; }
 
-        public Veiculo() { }
+        public Veiculo() { } //TODO Remover este construtor
 
-        public Veiculo(long codigoMarca, string codigoFipe, string codigoAno, string anoModelo, string combustivel, string preco, string descricaoMarca, string descricaoModelo)
+        public Veiculo(string codigoFipe, string codigoAno, string anoModelo, string combustivel, string preco, Modelo modelo)
         {
-            this.CodigoMarca = codigoMarca;
             this.CodigoFipe = codigoFipe;
-            this.CodigoAno = codigoAno;
+            this.CodigoAnoModelo = codigoAno;
             this.Preco = preco;
             this.DescricaoCombustivel = combustivel;
             this.AnoModelo = anoModelo;
-            this.DescricaoMarca = descricaoMarca;
-            this.DescricaoModelo = descricaoModelo;
+            this.Modelo = modelo;
+            this.IdModelo = modelo.Id;
         }
 
         public void AddConsultaVeiculo()
         {
-            if(this.ConsultasVeiculo == null)
+            if (this.ConsultasVeiculo == null)
             {
                 this.ConsultasVeiculo = new List<ConsultaVeiculo>();
             }

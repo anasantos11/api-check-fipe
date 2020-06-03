@@ -7,7 +7,7 @@ namespace CheckFipe.Domain.Entities
     {
         public DateTime DataConsultaVeiculo { get; set; }
 
-        public int IdVeiculo { get; set; }
+        public long IdVeiculo { get; set; }
 
         public Veiculo Veiculo { get; set; }
     }

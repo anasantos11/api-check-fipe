@@ -10,8 +10,6 @@ namespace CheckFipe.Infrastructure.Data.Mapping
         {
             builder.ToTable("ConsultaVeiculo");
             builder.HasKey(consultaVeiculo => consultaVeiculo.Id);
-
-            builder.HasKey(consultaVeiculo => consultaVeiculo.Id);
             builder
                  .HasOne(consultaVeiculo => consultaVeiculo.Veiculo)
                  .WithMany(veiculo => veiculo.ConsultasVeiculo)

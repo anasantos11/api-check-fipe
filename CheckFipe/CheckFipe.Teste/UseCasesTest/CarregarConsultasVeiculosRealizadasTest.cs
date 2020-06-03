@@ -24,9 +24,9 @@ namespace CheckFipe.Teste.UseCasesTest
                 Assert.IsNotNull(consultas);
                 Assert.AreEqual(1, consultas.Count());
                 Assert.AreEqual(DateTime.Now.Date, consultas.First().DataConsultaVeiculo.Date);
-                Assert.AreEqual(codigoMarca, consultas.First().Veiculo.CodigoMarca);
+                Assert.AreEqual(codigoMarca, consultas.First().Veiculo.Modelo.IdMarca);
                 Assert.AreEqual(codigoFipeEsperado, consultas.First().Veiculo.CodigoFipe);
-                Assert.AreEqual(codigoAno, consultas.First().Veiculo.CodigoAno);
+                Assert.AreEqual(codigoAno, consultas.First().Veiculo.CodigoAnoModelo);
                 Assert.AreEqual(anoEsperado, consultas.First().Veiculo.AnoModelo);
                 Assert.AreEqual(combustivelEsperado, consultas.First().Veiculo.DescricaoCombustivel);
                 Assert.IsFalse(string.IsNullOrWhiteSpace(consultas.First().Veiculo.Preco));

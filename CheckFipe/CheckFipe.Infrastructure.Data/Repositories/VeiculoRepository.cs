@@ -30,16 +30,19 @@ namespace CheckFipe.Infrastructure.Data.Repositories
         public IEnumerable<Veiculo> Carregar()
         {
             return this.VeiculoContext.Veiculos
-                .Include(veiculo => veiculo.ConsultasVeiculo);
+                .Include(veiculo => veiculo.ConsultasVeiculo)
+                .Include(veiculo => veiculo.Modelo)
+                    .ThenInclude(modelo => modelo.Marca);
         }
 
-        public Veiculo Carregar(long codigoMarca, string codigoFipe, string codigoAno)
+        public Veiculo Carregar(long idModelo, string codigoFipe, string codigoAno)
         {
             return this.VeiculoContext.Veiculos
-                 .Where(veiculo => veiculo.CodigoMarca == codigoMarca &&
-                                             veiculo.CodigoFipe == codigoFipe &&
-                                             veiculo.CodigoAno == codigoAno)
-                 .FirstOrDefault();
+                .Include(veiculo => veiculo.ConsultasVeiculo)
+                .Include(veiculo => veiculo.Modelo)
+                    .ThenInclude(modelo => modelo.Marca)
+                .Where(veiculo => veiculo.IdModelo == idModelo && veiculo.CodigoFipe == codigoFipe && veiculo.CodigoAnoModelo == codigoAno)
+                .FirstOrDefault();
         }
 
     }
