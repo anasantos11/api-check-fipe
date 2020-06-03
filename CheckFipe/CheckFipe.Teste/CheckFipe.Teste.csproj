@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CheckFipe.Domain\CheckFipe.Domain.csproj" />
     <ProjectReference Include="..\CheckFipe\CheckFipe.csproj" />
   </ItemGroup>
 

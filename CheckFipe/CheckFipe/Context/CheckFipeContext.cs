@@ -1,5 +1,5 @@
 ﻿using CheckFipe.Contracts;
-using CheckFipe.Entities;
+using CheckFipe.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace CheckFipe.Context

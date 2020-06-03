@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json.Serialization;
 
-namespace CheckFipe.Entities
+namespace CheckFipe.Domain.Entities
 {
     public class Veiculo
     {
-        [JsonIgnore]
         public long IdVeiculo { get; set; }
         public long CodigoMarca { get; set; }
         public string CodigoFipe { get; set; }
@@ -25,7 +23,6 @@ namespace CheckFipe.Entities
             }
         }
 
-        [JsonIgnore]
         public IEnumerable<ConsultaVeiculo> ConsultasVeiculo { get; set; }
 
     }

@@ -31,4 +31,8 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0-rc3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CheckFipe.Domain\CheckFipe.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

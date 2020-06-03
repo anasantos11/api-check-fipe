@@ -1,5 +1,5 @@
 ﻿using CheckFipe.Context;
-using CheckFipe.Entities;
+using CheckFipe.Domain.Entities;
 using CheckFipe.Enums;
 using CheckFipe.UseCase;
 using NUnit.Framework;

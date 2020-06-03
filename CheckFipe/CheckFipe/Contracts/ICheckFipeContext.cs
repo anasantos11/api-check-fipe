@@ -1,4 +1,4 @@
-﻿using CheckFipe.Entities;
+﻿using CheckFipe.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 
