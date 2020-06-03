@@ -24,9 +24,12 @@ namespace CheckFipe.Domain.Entities
 
         public IList<ConsultaVeiculo> ConsultasVeiculo { get; set; }
 
-        public Veiculo() { } //TODO Remover este construtor
+        public Veiculo()
+        {
+            this.ConsultasVeiculo = new List<ConsultaVeiculo>();
+        }
 
-        public Veiculo(string codigoFipe, string codigoAno, string anoModelo, string combustivel, string preco, Modelo modelo)
+        public Veiculo(string codigoFipe, string codigoAno, string anoModelo, string combustivel, string preco, Modelo modelo) : this()
         {
             this.CodigoFipe = codigoFipe;
             this.CodigoAnoModelo = codigoAno;
@@ -34,16 +37,10 @@ namespace CheckFipe.Domain.Entities
             this.DescricaoCombustivel = combustivel;
             this.AnoModelo = anoModelo;
             this.Modelo = modelo;
-            this.IdModelo = modelo.Id;
         }
 
         public void AddConsultaVeiculo()
         {
-            if (this.ConsultasVeiculo == null)
-            {
-                this.ConsultasVeiculo = new List<ConsultaVeiculo>();
-            }
-
             this.ConsultasVeiculo.Add(new ConsultaVeiculo()
             {
                 DataConsultaVeiculo = DateTime.Now
