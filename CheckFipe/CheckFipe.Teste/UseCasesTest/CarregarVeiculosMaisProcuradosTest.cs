@@ -39,8 +39,8 @@ namespace CheckFipe.Teste.UseCasesTest
             Assert.IsNotNull(veiculosMaisProcurados);
             Assert.AreEqual(1, veiculosMaisProcurados.Count());
             Assert.AreEqual(3, veiculosMaisProcurados.First().NumeroDeConsultas);
-            Assert.AreEqual(retornoFipe.DescricaoMarca, veiculosMaisProcurados.First().DescricaoMarca);
-            Assert.AreEqual(retornoFipe.DescricaoModelo, veiculosMaisProcurados.First().DescricaoModelo);
+            Assert.AreEqual(retornoFipe.Modelo.Marca.Nome, veiculosMaisProcurados.First().DescricaoMarca);
+            Assert.AreEqual(retornoFipe.Modelo.Nome, veiculosMaisProcurados.First().DescricaoModelo);
             Assert.AreEqual(codigoFipeEsperado, veiculosMaisProcurados.First().CodigoFipe);
             Assert.AreEqual(anoEsperado, veiculosMaisProcurados.First().AnoModelo);
             Assert.AreEqual(combustivelEsperado, veiculosMaisProcurados.First().DescricaoCombustivel);

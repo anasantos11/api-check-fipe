@@ -5,6 +5,8 @@ using CheckFipe.Infrastructure.Data.Repositories;
 using CheckFipe.Domain.Entities;
 using AutoMapper;
 using CheckFipe.Infraestructure.Proxy.Enumerators;
+using CheckFipe.Infraestructure.Proxy.Services;
+using CheckFipe.Domain.RepositoriesInterfaces;
 
 namespace CheckFipe.UseCase
 {
@@ -17,48 +19,22 @@ namespace CheckFipe.UseCase
 
         private ICheckFipeContext Context { get; }
 
-        public VeiculoRetornoFipe Carregar(TipoVeiculo tipoVeiculo, long codigoMarca, long codigoModelo, string codigoAno)
+        public Veiculo Carregar(TipoVeiculo tipoVeiculo, long codigoMarca, long codigoModelo, string codigoAno)
         {
-            VeiculoRetornoFipe retornoFipe = new ConsultaFipe(tipoVeiculo, TipoAcaoFipe.Veiculo, codigoMarca.ToString(), codigoModelo.ToString(), codigoAno)
-                .Carregar<VeiculoRetornoFipe>();
-
-            var veiculoRepository = new VeiculoRepository(this.Context);
-            Veiculo veiculo = veiculoRepository.Carregar(codigoModelo, retornoFipe.CodigoFipe, codigoAno);
+            IVeiculoWriteReadRepository veiculoRepository = new VeiculoRepository(this.Context);
+            Veiculo veiculo = veiculoRepository.Carregar(codigoModelo, codigoMarca, codigoAno);
 
             if (veiculo == null)
             {
-
-                IMapper mapperConfig = new MapperConfiguration(config =>
-                {
-                    config.CreateMap<VeiculoRetornoFipe, Veiculo>()
-                        .ForMember(veiculo => veiculo.CodigoAnoModelo, opts => opts.MapFrom(veiculoFipe => codigoAno))
-                        .ForMember(veiculo => veiculo.Modelo,
-                            opts => opts.MapFrom(veiculoFipe => new Domain.Entities.Modelo()
-                            {
-                                Id = codigoModelo,
-                                Nome = veiculoFipe.DescricaoModelo,
-                                Marca = new Domain.Entities.Marca()
-                                {
-                                    Id = codigoMarca,
-                                    Nome = veiculoFipe.DescricaoMarca
-                                }
-                            })
-                        );
-                }).CreateMapper();
-
-                veiculo = mapperConfig.Map<VeiculoRetornoFipe, Veiculo>(retornoFipe);
-
-                veiculo.AddConsultaVeiculo();
-                veiculoRepository.Cadastrar(veiculo);
+                veiculo = new VeiculoService(tipoVeiculo, codigoMarca, codigoModelo, codigoAno).Carregar();
             }
-            else
-            {
-                veiculo.AddConsultaVeiculo();
-                veiculoRepository.Atualizar(veiculo);
-            }
+
+            veiculo.AddConsultaVeiculo();
+            veiculoRepository.Registrar(veiculo);
+
             this.Context.SaveChanges();
 
-            return retornoFipe;
+            return veiculo;
         }
     }
 }
