@@ -89,10 +89,9 @@ namespace CheckFipe.Teste.RepositoriesTest
             
             context.SaveChanges();
 
-            var veiculo = new VeiculoRepository(context).Carregar(3302, "509001-6", "1997-3");
+            var veiculo = new VeiculoRepository(context).Carregar(3302, 109, "1997-3");
 
             Assert.IsNotNull(veiculo);
-            Assert.AreEqual(109, veiculo.Modelo.IdMarca);
             Assert.AreEqual("509001-6", veiculo.CodigoFipe);
             Assert.AreEqual("1997-3", veiculo.CodigoAnoModelo);
             Assert.AreEqual("1997", veiculo.AnoModelo);

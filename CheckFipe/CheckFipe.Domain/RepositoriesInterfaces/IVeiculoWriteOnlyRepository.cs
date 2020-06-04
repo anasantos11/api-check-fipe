@@ -7,5 +7,6 @@ namespace CheckFipe.Domain.RepositoriesInterfaces
 {
     public interface IVeiculoWriteOnlyRepository : IWriteOnlyRepository<Veiculo>
     {
+        void Registrar(Veiculo veiculo);
     }
 }

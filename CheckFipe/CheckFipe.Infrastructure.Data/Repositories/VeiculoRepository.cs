@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CheckFipe.Infrastructure.Data.Repositories
 {
-    public class VeiculoRepository : IVeiculoWriteOnlyRepository, IVeiculoReadOnlyRepository
+    public class VeiculoRepository : IVeiculoWriteReadRepository
     {
         private readonly ICheckFipeContext VeiculoContext;
 
@@ -27,6 +27,18 @@ namespace CheckFipe.Infrastructure.Data.Repositories
             this.VeiculoContext.Entry(objeto).State = EntityState.Modified;
         }
 
+        public void Registrar(Veiculo veiculo)
+        {
+            if (veiculo.Id > 0)
+            {
+                Atualizar(veiculo);
+            }
+            else
+            {
+                Cadastrar(veiculo);
+            }
+        }
+
         public IEnumerable<Veiculo> Carregar()
         {
             return this.VeiculoContext.Veiculos
@@ -35,13 +47,13 @@ namespace CheckFipe.Infrastructure.Data.Repositories
                     .ThenInclude(modelo => modelo.Marca);
         }
 
-        public Veiculo Carregar(long idModelo, string codigoFipe, string codigoAno)
+        public Veiculo Carregar(long idModelo, long idMarca, string codigoAno)
         {
             return this.VeiculoContext.Veiculos
                 .Include(veiculo => veiculo.ConsultasVeiculo)
                 .Include(veiculo => veiculo.Modelo)
                     .ThenInclude(modelo => modelo.Marca)
-                .Where(veiculo => veiculo.IdModelo == idModelo && veiculo.CodigoFipe == codigoFipe && veiculo.CodigoAnoModelo == codigoAno)
+                .Where(veiculo => veiculo.IdModelo == idModelo && veiculo.Modelo.IdMarca == idMarca && veiculo.CodigoAnoModelo == codigoAno)
                 .FirstOrDefault();
         }
 
