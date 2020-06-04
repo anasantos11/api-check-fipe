@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace CheckFipe.Infrastructure.Data.Repositories
 {
-    public class ConsultaVeiculoRepository : IRepository<ConsultaVeiculo>
+    public class ConsultaVeiculoRepository : IConsultaVeiculoReadOnlyRepository
     {
         private readonly ICheckFipeContext ConsultaVeiculoContext;
 
@@ -25,7 +25,10 @@ namespace CheckFipe.Infrastructure.Data.Repositories
         public IEnumerable<ConsultaVeiculo> Carregar()
         {
             return this.ConsultaVeiculoContext.ConsultasVeiculo
-                .Include(consulta => consulta.Veiculo);
+                .Include(consulta => consulta.Veiculo)
+                    .ThenInclude(veiculo => veiculo.Modelo)
+                        .ThenInclude(modelo => modelo.Marca);
+
         }
     }
 }
