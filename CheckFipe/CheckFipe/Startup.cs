@@ -88,6 +88,7 @@ namespace CheckFipe
             app.UseSwaggerUI(configSwagger =>
             {
                 configSwagger.SwaggerEndpoint("/swagger/v1/swagger.json", "Check Fipe v1");
+                configSwagger.RoutePrefix = string.Empty;
             });
         }
     }
