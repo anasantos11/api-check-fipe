@@ -4,7 +4,7 @@ using CheckFipe.Models;
 using CheckFipe.Infrastructure.Data.Repositories;
 using CheckFipe.Domain.Entities;
 using AutoMapper;
-using CheckFipe.Enums;
+using CheckFipe.Infraestructure.Proxy.Enumerators;
 
 namespace CheckFipe.UseCase
 {
@@ -19,7 +19,7 @@ namespace CheckFipe.UseCase
 
         public VeiculoRetornoFipe Carregar(TipoVeiculo tipoVeiculo, long codigoMarca, long codigoModelo, string codigoAno)
         {
-            VeiculoRetornoFipe retornoFipe = new ConsultaFipe(tipoVeiculo, AcaoFipe.Veiculo, codigoMarca.ToString(), codigoModelo.ToString(), codigoAno)
+            VeiculoRetornoFipe retornoFipe = new ConsultaFipe(tipoVeiculo, TipoAcaoFipe.Veiculo, codigoMarca.ToString(), codigoModelo.ToString(), codigoAno)
                 .Carregar<VeiculoRetornoFipe>();
 
             var veiculoRepository = new VeiculoRepository(this.Context);

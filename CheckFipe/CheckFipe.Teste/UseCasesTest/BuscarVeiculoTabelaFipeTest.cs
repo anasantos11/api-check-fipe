@@ -1,5 +1,4 @@
 ﻿using CheckFipe.Context;
-using CheckFipe.Enums;
 using CheckFipe.Domain.Enumerators;
 using CheckFipe.Models;
 using CheckFipe.UseCase;

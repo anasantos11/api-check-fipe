@@ -1,5 +1,5 @@
 ﻿using CheckFipe.Domain.Enumerators;
-using CheckFipe.Enums;
+using CheckFipe.Infraestructure.Proxy.Enumerators;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +14,7 @@ namespace CheckFipe.Models
 
         public static IEnumerable<Marca> Carregar(TipoVeiculo tipoVeiculo)
         {
-            return new ConsultaFipe(tipoVeiculo, AcaoFipe.Marcas)
+            return new ConsultaFipe(tipoVeiculo, TipoAcaoFipe.Marcas)
                 .Carregar<IEnumerable<RetornoFipe>>()
                 .Select(retornoFipe => new Marca()
                 {
