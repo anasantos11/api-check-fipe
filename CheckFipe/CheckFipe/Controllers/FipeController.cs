@@ -1,4 +1,5 @@
 ﻿using CheckFipe.Domain.Enumerators;
+using CheckFipe.Infraestructure.Proxy.Services;
 using CheckFipe.Infrastructure.Data.Contexts;
 using CheckFipe.Models;
 using CheckFipe.UseCase;
@@ -24,9 +25,9 @@ namespace CheckFipe.Controllers
         /// <param name="tipoVeiculo">Tipo do Veículo</param>
         /// <returns>Lista contendo todas as marcas do tipo de veículo informado, com o código e nome da marca.</returns>
         [HttpGet("{tipoVeiculo}")]
-        public IEnumerable<Marca> CarregarMarcas(TipoVeiculo tipoVeiculo)
+        public IEnumerable<Domain.Entities.Marca> CarregarMarcas(TipoVeiculo tipoVeiculo)
         {
-            return Marca.Carregar(tipoVeiculo);
+            return new MarcaService(tipoVeiculo).Carregar();
         }
 
         /// <summary> Carrega os modelos de uma marca de veículo da tabela Fipe</summary>
