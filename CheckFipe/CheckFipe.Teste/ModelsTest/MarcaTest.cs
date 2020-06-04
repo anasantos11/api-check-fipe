@@ -1,7 +1,6 @@
 ﻿using CheckFipe.Domain.Entities;
 using CheckFipe.Domain.Enumerators;
 using CheckFipe.Infraestructure.Proxy.Services;
-using CheckFipe.Models;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;

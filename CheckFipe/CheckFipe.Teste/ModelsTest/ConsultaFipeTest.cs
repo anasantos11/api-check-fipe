@@ -1,11 +1,12 @@
 using CheckFipe.Domain.Enumerators;
-using CheckFipe.Models;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using CheckFipe.Infraestructure.Proxy.Enumerators;
+using CheckFipe.Infraestructure.Proxy.Services;
+using CheckFipe.Infraestructure.Proxy.DataTransferObjects;
 
 namespace CheckFipe.Teste
 {
@@ -26,7 +27,7 @@ namespace CheckFipe.Teste
         [TestCase(TipoVeiculo.Caminhoes, TipoAcaoFipe.Veiculo, "109", "3302", "1997-3", ExpectedResult = "http://fipeapi.appspot.com/api/1/caminhoes/veiculo/109/3302/1997-3.json")]
         public string ValidarCarregamentoDaUrl(TipoVeiculo tipoVeiculo, TipoAcaoFipe acao, params string[] parametros)
         {
-            Type type = typeof(ConsultaFipe);
+            Type type = typeof(FipeBaseService);
             object consultaFipe = Activator.CreateInstance(type, tipoVeiculo, acao, parametros);
             MethodInfo metodoCarregarUrl = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
                 .Where(metodo => metodo.Name == "CarregarUrl" && metodo.IsPrivate)
@@ -41,7 +42,7 @@ namespace CheckFipe.Teste
         public void ValidarCarregamentoDasMarcas(TipoVeiculo tipoVeiculo, string marcaEsperada)
         {
 
-            IEnumerable<RetornoFipe> retorno = new ConsultaFipe(tipoVeiculo, TipoAcaoFipe.Marcas).Carregar<IEnumerable<RetornoFipe>>();
+            IEnumerable<FipeBaseOutput> retorno = new FipeBaseService(tipoVeiculo, TipoAcaoFipe.Marcas).Carregar<IEnumerable<FipeBaseOutput>>();
             Assert.IsNotNull(retorno);
             Assert.IsTrue(retorno.Count(marca => marca.Nome == marcaEsperada) > 0);
         }

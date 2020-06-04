@@ -1,7 +1,6 @@
 ﻿using CheckFipe.Teste.ContextTest;
 using CheckFipe.Domain.Entities;
 using CheckFipe.Domain.Enumerators;
-using CheckFipe.Models;
 using CheckFipe.UseCase;
 using NUnit.Framework;
 

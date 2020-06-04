@@ -1,10 +1,7 @@
 ﻿using CheckFipe.Domain.Enumerators;
 using CheckFipe.Infrastructure.Data.Interfaces;
-using CheckFipe.Models;
 using CheckFipe.Infrastructure.Data.Repositories;
 using CheckFipe.Domain.Entities;
-using AutoMapper;
-using CheckFipe.Infraestructure.Proxy.Enumerators;
 using CheckFipe.Infraestructure.Proxy.Services;
 using CheckFipe.Domain.RepositoriesInterfaces;
 

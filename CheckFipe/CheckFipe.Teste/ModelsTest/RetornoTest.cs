@@ -1,4 +1,4 @@
-﻿using CheckFipe.Models;
+﻿using CheckFipe.Infraestructure.Proxy.DataTransferObjects;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
@@ -10,7 +10,7 @@ namespace CheckFipe.Teste
         [Test]
         public void ValidarSerializacaoObjeto()
         {
-            var retornoFipe = new RetornoFipe()
+            var retornoFipe = new FipeBaseOutput()
             {
                 Codigo = "21",
                 Nome = "Fiat"
@@ -28,7 +28,7 @@ namespace CheckFipe.Teste
         {
             string jsonRetornoFipe = @"{""id"": 21, ""name"": ""Fiat""}";
 
-            RetornoFipe retorno = JsonConvert.DeserializeObject<RetornoFipe>(jsonRetornoFipe);
+            FipeBaseOutput retorno = JsonConvert.DeserializeObject<FipeBaseOutput>(jsonRetornoFipe);
             Assert.IsNotNull(retorno);
             Assert.AreEqual("21", retorno.Codigo);
             Assert.AreEqual("Fiat", retorno.Nome);

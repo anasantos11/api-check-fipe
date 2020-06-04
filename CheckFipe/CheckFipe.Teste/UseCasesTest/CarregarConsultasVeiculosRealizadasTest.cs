@@ -4,7 +4,6 @@ using CheckFipe.Teste.ContextTest;
 using CheckFipe.Domain.Entities;
 using CheckFipe.Domain.Enumerators;
 using CheckFipe.Infrastructure.Data.Repositories;
-using CheckFipe.Models;
 using CheckFipe.UseCase;
 using NUnit.Framework;
 using System;
