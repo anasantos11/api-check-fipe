@@ -1,5 +1,8 @@
-﻿using CheckFipe.Context;
+﻿using AutoMapper;
+using CheckFipe.Application.CarregarConsultasVeiculos;
+using CheckFipe.Context;
 using CheckFipe.Domain.Enumerators;
+using CheckFipe.Infrastructure.Data.Repositories;
 using CheckFipe.Models;
 using CheckFipe.UseCase;
 using NUnit.Framework;
@@ -19,13 +22,20 @@ namespace CheckFipe.Teste.UseCasesTest
             VeiculoRetornoFipe veiculoBuscado = new BuscarVeiculoTabelaFipe(context).Carregar(tipoVeiculo, codigoMarca, codigoModelo, codigoAno);
             context.SaveChanges();
 
-            var consultas = new CarregarConsultasVeiculosRealizadas(context).Carregar();
+            var repository = new ConsultaVeiculoRepository(context);
+            IMapper mapperConfig = new MapperConfiguration(config =>
+            {
+                config.AddProfile(new MapperConfig());
+            }).CreateMapper();
+
+            var consultas = new CarregarConsultasVeiculosUseCase(repository, mapperConfig).Execute();
+
             Assert.IsNotNull(consultas);
             Assert.AreEqual(1, consultas.Count());
             Assert.AreEqual(DateTime.Now.Date, consultas.First().DataConsultaVeiculo.Date);
-            Assert.AreEqual(codigoMarca, consultas.First().Veiculo.Modelo.IdMarca);
+            Assert.AreEqual(veiculoBuscado.DescricaoMarca, consultas.First().Veiculo.DescricaoMarca);
+            Assert.AreEqual(veiculoBuscado.DescricaoModelo, consultas.First().Veiculo.DescricaoModelo);
             Assert.AreEqual(codigoFipeEsperado, consultas.First().Veiculo.CodigoFipe);
-            Assert.AreEqual(codigoAno, consultas.First().Veiculo.CodigoAnoModelo);
             Assert.AreEqual(anoEsperado, consultas.First().Veiculo.AnoModelo);
             Assert.AreEqual(combustivelEsperado, consultas.First().Veiculo.DescricaoCombustivel);
             Assert.IsFalse(string.IsNullOrWhiteSpace(consultas.First().Veiculo.Preco));

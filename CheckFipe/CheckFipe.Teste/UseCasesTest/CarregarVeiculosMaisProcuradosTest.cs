@@ -1,6 +1,10 @@
-﻿using CheckFipe.Context;
+﻿using AutoMapper;
+using CheckFipe.Application;
+using CheckFipe.Application.CarregarVeiculosMaisProcurados;
+using CheckFipe.Context;
 using CheckFipe.Domain.Entities;
 using CheckFipe.Domain.Enumerators;
+using CheckFipe.Infrastructure.Data.Repositories;
 using CheckFipe.UseCase;
 using NUnit.Framework;
 using System.Collections.Generic;
@@ -17,21 +21,27 @@ namespace CheckFipe.Teste.UseCasesTest
         {
             using var context = new CheckFipeContextTest();
 
-            new BuscarVeiculoTabelaFipe(context).Carregar(tipoVeiculo, codigoMarca, codigoModelo, codigoAno);
+            var retornoFipe = new BuscarVeiculoTabelaFipe(context).Carregar(tipoVeiculo, codigoMarca, codigoModelo, codigoAno);
             context.SaveChanges();
             new BuscarVeiculoTabelaFipe(context).Carregar(tipoVeiculo, codigoMarca, codigoModelo, codigoAno);
             context.SaveChanges();
             new BuscarVeiculoTabelaFipe(context).Carregar(tipoVeiculo, codigoMarca, codigoModelo, codigoAno);
             context.SaveChanges();
 
-            IEnumerable<Veiculo> veiculosMaisProcurados = new CarregarVeiculosMaisProcurados(context).Carregar();
+            var repository = new VeiculoRepository(context);
+            IMapper mapperConfig = new MapperConfiguration(config =>
+            {
+                config.AddProfile(new MapperConfig());
+            }).CreateMapper();
+
+            IEnumerable<VeiculoOutput> veiculosMaisProcurados = new CarregarVeiculosMaisProcuradosUseCase(repository, mapperConfig).Execute(3);
 
             Assert.IsNotNull(veiculosMaisProcurados);
             Assert.AreEqual(1, veiculosMaisProcurados.Count());
             Assert.AreEqual(3, veiculosMaisProcurados.First().NumeroDeConsultas);
-            Assert.AreEqual(codigoMarca, veiculosMaisProcurados.First().Modelo.IdMarca);
+            Assert.AreEqual(retornoFipe.DescricaoMarca, veiculosMaisProcurados.First().DescricaoMarca);
+            Assert.AreEqual(retornoFipe.DescricaoModelo, veiculosMaisProcurados.First().DescricaoModelo);
             Assert.AreEqual(codigoFipeEsperado, veiculosMaisProcurados.First().CodigoFipe);
-            Assert.AreEqual(codigoAno, veiculosMaisProcurados.First().CodigoAnoModelo);
             Assert.AreEqual(anoEsperado, veiculosMaisProcurados.First().AnoModelo);
             Assert.AreEqual(combustivelEsperado, veiculosMaisProcurados.First().DescricaoCombustivel);
             Assert.IsFalse(string.IsNullOrWhiteSpace(veiculosMaisProcurados.First().Preco));
