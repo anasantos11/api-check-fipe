@@ -1,6 +1,6 @@
 ﻿using CheckFipe.Context;
 using CheckFipe.Domain.Entities;
-using CheckFipe.Enums;
+using CheckFipe.Domain.Enumerators;
 using CheckFipe.UseCase;
 using NUnit.Framework;
 using System.Collections.Generic;
@@ -10,10 +10,10 @@ namespace CheckFipe.Teste.UseCasesTest
 {
     public class CarregarVeiculosMaisProcuradosTest
     {
-        [TestCase(TipoVeiculoFipe.Carros, 21, 4828, "2013-1", "001267-0", "2013", "Gasolina")]
-        [TestCase(TipoVeiculoFipe.Motos, 101, 3060, "1995-1", "827001-5", "1995", "Gasolina")]
-        [TestCase(TipoVeiculoFipe.Caminhoes, 109, 3302, "1997-3", "509001-6", "1997", "Diesel")]
-        public void ValidarCarregarConsultasVeiculosRealizadas(TipoVeiculoFipe tipoVeiculo, long codigoMarca, long codigoModelo, string codigoAno, string codigoFipeEsperado, string anoEsperado, string combustivelEsperado)
+        [TestCase(TipoVeiculo.Carros, 21, 4828, "2013-1", "001267-0", "2013", "Gasolina")]
+        [TestCase(TipoVeiculo.Motos, 101, 3060, "1995-1", "827001-5", "1995", "Gasolina")]
+        [TestCase(TipoVeiculo.Caminhoes, 109, 3302, "1997-3", "509001-6", "1997", "Diesel")]
+        public void ValidarCarregarConsultasVeiculosRealizadas(TipoVeiculo tipoVeiculo, long codigoMarca, long codigoModelo, string codigoAno, string codigoFipeEsperado, string anoEsperado, string combustivelEsperado)
         {
             using var context = new CheckFipeContextTest();
 

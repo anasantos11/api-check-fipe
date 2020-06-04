@@ -1,10 +1,10 @@
-﻿using CheckFipe.Enums;
+﻿using CheckFipe.Domain.Enumerators;
 using CheckFipe.Infrastructure.Data.Interfaces;
 using CheckFipe.Models;
 using CheckFipe.Infrastructure.Data.Repositories;
 using CheckFipe.Domain.Entities;
 using AutoMapper;
-using System;
+using CheckFipe.Enums;
 
 namespace CheckFipe.UseCase
 {
@@ -17,7 +17,7 @@ namespace CheckFipe.UseCase
 
         private ICheckFipeContext Context { get; }
 
-        public VeiculoRetornoFipe Carregar(TipoVeiculoFipe tipoVeiculo, long codigoMarca, long codigoModelo, string codigoAno)
+        public VeiculoRetornoFipe Carregar(TipoVeiculo tipoVeiculo, long codigoMarca, long codigoModelo, string codigoAno)
         {
             VeiculoRetornoFipe retornoFipe = new ConsultaFipe(tipoVeiculo, AcaoFipe.Veiculo, codigoMarca.ToString(), codigoModelo.ToString(), codigoAno)
                 .Carregar<VeiculoRetornoFipe>();

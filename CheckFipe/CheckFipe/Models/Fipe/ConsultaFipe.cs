@@ -1,4 +1,5 @@
-﻿using CheckFipe.Enums;
+﻿using CheckFipe.Domain.Enumerators;
+using CheckFipe.Enums;
 using CheckFipe.Helpers;
 using System.Linq;
 
@@ -11,7 +12,7 @@ namespace CheckFipe.Models
         #endregion
 
         #region Construtores
-        public ConsultaFipe(TipoVeiculoFipe tipoVeiculo, AcaoFipe acaoFipe, params string[] parametros)
+        public ConsultaFipe(TipoVeiculo tipoVeiculo, AcaoFipe acaoFipe, params string[] parametros)
         {
             this.TipoVeiculo = tipoVeiculo;
             this.AcaoFipe = acaoFipe;
@@ -20,7 +21,7 @@ namespace CheckFipe.Models
         #endregion
 
         #region Propriedades e Atributos Internos
-        private TipoVeiculoFipe TipoVeiculo { get; set; }
+        private TipoVeiculo TipoVeiculo { get; set; }
         private AcaoFipe AcaoFipe { get; set; }
         public string[] Parametros { get; set; }
         private string _url;

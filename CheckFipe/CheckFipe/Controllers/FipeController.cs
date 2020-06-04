@@ -1,4 +1,4 @@
-﻿using CheckFipe.Enums;
+﻿using CheckFipe.Domain.Enumerators;
 using CheckFipe.Infrastructure.Data.Contexts;
 using CheckFipe.Models;
 using CheckFipe.UseCase;
@@ -24,7 +24,7 @@ namespace CheckFipe.Controllers
         /// <param name="tipoVeiculo">Tipo do Veículo</param>
         /// <returns>Lista contendo todas as marcas do tipo de veículo informado, com o código e nome da marca.</returns>
         [HttpGet("{tipoVeiculo}")]
-        public IEnumerable<Marca> CarregarMarcas(TipoVeiculoFipe tipoVeiculo)
+        public IEnumerable<Marca> CarregarMarcas(TipoVeiculo tipoVeiculo)
         {
             return Marca.Carregar(tipoVeiculo);
         }
@@ -35,7 +35,7 @@ namespace CheckFipe.Controllers
         /// <param name="codigoMarca">Código da Marca</param>
         /// <returns>Lista contendo todos os modelos da marca, com o código e nome do modelo.</returns>
         [HttpGet("{tipoVeiculo}/{codigoMarca}")]
-        public IEnumerable<Modelo> CarregarModelos(TipoVeiculoFipe tipoVeiculo, long codigoMarca)
+        public IEnumerable<Modelo> CarregarModelos(TipoVeiculo tipoVeiculo, long codigoMarca)
         {
             return Modelo.Carregar(tipoVeiculo, codigoMarca);
         }
@@ -47,7 +47,7 @@ namespace CheckFipe.Controllers
         /// <param name="codigoModelo">Código do Modelo</param>
         /// <returns>Lista contendo todos os anos de um modelo de veículo, com o código e descrição do ano.</returns>
         [HttpGet("{tipoVeiculo}/{codigoMarca}/{codigoModelo}")]
-        public IEnumerable<Ano> CarregarAnos(TipoVeiculoFipe tipoVeiculo, long codigoMarca, long codigoModelo)
+        public IEnumerable<Ano> CarregarAnos(TipoVeiculo tipoVeiculo, long codigoMarca, long codigoModelo)
         {
             return Ano.Carregar(tipoVeiculo, codigoMarca, codigoModelo);
         }
@@ -60,7 +60,7 @@ namespace CheckFipe.Controllers
         /// <param name="codigoAno">Código do Ano</param>
         /// <returns>Dados do veículo na tabela fipe.</returns>
         [HttpGet("{tipoVeiculo}/{codigoMarca}/{codigoModelo}/{codigoAno}")]
-        public VeiculoRetornoFipe BuscarVeiculo(TipoVeiculoFipe tipoVeiculo, long codigoMarca, long codigoModelo, string codigoAno)
+        public VeiculoRetornoFipe BuscarVeiculo(TipoVeiculo tipoVeiculo, long codigoMarca, long codigoModelo, string codigoAno)
         {
             return new BuscarVeiculoTabelaFipe(this.Context).Carregar(tipoVeiculo, codigoMarca, codigoModelo, codigoAno);
         }

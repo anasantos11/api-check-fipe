@@ -1,4 +1,5 @@
-﻿using CheckFipe.Enums;
+﻿using CheckFipe.Domain.Enumerators;
+using CheckFipe.Enums;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,7 +11,7 @@ namespace CheckFipe.Models
 
         public string Nome { get; set; }
 
-        public static IEnumerable<Ano> Carregar(TipoVeiculoFipe tipoVeiculo, long codigoMarca, long codigoModelo)
+        public static IEnumerable<Ano> Carregar(TipoVeiculo tipoVeiculo, long codigoMarca, long codigoModelo)
         {
             return new ConsultaFipe(tipoVeiculo, AcaoFipe.Veiculo, codigoMarca.ToString(), codigoModelo.ToString())
                 .Carregar<IEnumerable<RetornoFipe>>()

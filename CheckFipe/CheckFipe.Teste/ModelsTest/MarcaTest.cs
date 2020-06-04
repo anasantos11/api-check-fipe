@@ -1,4 +1,4 @@
-﻿using CheckFipe.Enums;
+﻿using CheckFipe.Domain.Enumerators;
 using CheckFipe.Models;
 using NUnit.Framework;
 using System.Collections.Generic;
@@ -9,10 +9,10 @@ namespace CheckFipe.Teste.ModelsTest
     class MarcaTest
     {
 
-        [TestCase(TipoVeiculoFipe.Carros, "JEEP")]
-        [TestCase(TipoVeiculoFipe.Motos, "YAMAHA")]
-        [TestCase(TipoVeiculoFipe.Caminhoes, "IVECO")]
-        public void ValidarCarregamentoDasMarcas(TipoVeiculoFipe tipoVeiculo, string marcaEsperada)
+        [TestCase(TipoVeiculo.Carros, "JEEP")]
+        [TestCase(TipoVeiculo.Motos, "YAMAHA")]
+        [TestCase(TipoVeiculo.Caminhoes, "IVECO")]
+        public void ValidarCarregamentoDasMarcas(TipoVeiculo tipoVeiculo, string marcaEsperada)
         {
 
             IEnumerable<Marca> retorno = Marca.Carregar(tipoVeiculo);
