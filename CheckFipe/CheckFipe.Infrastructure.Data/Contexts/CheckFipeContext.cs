@@ -7,6 +7,14 @@ namespace CheckFipe.Infrastructure.Data.Contexts
 {
     public class CheckFipeContext : DbContext, ICheckFipeContext
     {
+        public CheckFipeContext()
+        {
+        }
+
+        public CheckFipeContext(DbContextOptions<CheckFipeContext> options) : base(options)
+        {
+        }
+
         public DbSet<ConsultaVeiculo> ConsultasVeiculo { get; set; }
         public DbSet<Veiculo> Veiculos { get; set; }
 
