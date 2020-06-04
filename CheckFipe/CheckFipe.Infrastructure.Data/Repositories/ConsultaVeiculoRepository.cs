@@ -1,5 +1,5 @@
 ﻿using CheckFipe.Domain.Entities;
-using CheckFipe.Domain.Interfaces;
+using CheckFipe.Domain.RepositoriesInterfaces;
 using CheckFipe.Infrastructure.Data.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;

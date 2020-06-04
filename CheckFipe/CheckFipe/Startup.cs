@@ -1,7 +1,7 @@
 using AutoMapper;
 using CheckFipe.Application.CarregarConsultasVeiculos;
 using CheckFipe.Application.CarregarVeiculosMaisProcurados;
-using CheckFipe.Domain.Interfaces;
+using CheckFipe.Domain.RepositoriesInterfaces;
 using CheckFipe.Infrastructure.Data.Contexts;
 using CheckFipe.Infrastructure.Data.Interfaces;
 using CheckFipe.Infrastructure.Data.Repositories;

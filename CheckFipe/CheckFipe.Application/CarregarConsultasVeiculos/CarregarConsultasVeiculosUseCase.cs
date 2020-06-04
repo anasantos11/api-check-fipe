@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using CheckFipe.Domain.Interfaces;
+using CheckFipe.Domain.RepositoriesInterfaces;
 using System.Collections.Generic;
 
 namespace CheckFipe.Application.CarregarConsultasVeiculos
