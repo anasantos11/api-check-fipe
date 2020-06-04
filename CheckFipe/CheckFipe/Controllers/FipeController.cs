@@ -48,9 +48,9 @@ namespace CheckFipe.Controllers
         /// <param name="codigoModelo">Código do Modelo</param>
         /// <returns>Lista contendo todos os anos de um modelo de veículo, com o código e descrição do ano.</returns>
         [HttpGet("{tipoVeiculo}/{codigoMarca}/{codigoModelo}")]
-        public IEnumerable<Ano> CarregarAnos(TipoVeiculo tipoVeiculo, long codigoMarca, long codigoModelo)
+        public IEnumerable<Domain.Entities.Ano> CarregarAnos(TipoVeiculo tipoVeiculo, long codigoMarca, long codigoModelo)
         {
-            return Ano.Carregar(tipoVeiculo, codigoMarca, codigoModelo);
+            return new AnoService(tipoVeiculo, codigoMarca.ToString(), codigoModelo.ToString()).Carregar();
         }
 
         /// <summary> Carrega os dados de um veículo da tabela Fipe</summary>
