@@ -36,9 +36,9 @@ namespace CheckFipe.Controllers
         /// <param name="codigoMarca">Código da Marca</param>
         /// <returns>Lista contendo todos os modelos da marca, com o código e nome do modelo.</returns>
         [HttpGet("{tipoVeiculo}/{codigoMarca}")]
-        public IEnumerable<Modelo> CarregarModelos(TipoVeiculo tipoVeiculo, long codigoMarca)
+        public IEnumerable<Domain.Entities.Modelo> CarregarModelos(TipoVeiculo tipoVeiculo, long codigoMarca)
         {
-            return Modelo.Carregar(tipoVeiculo, codigoMarca);
+            return new ModeloService(tipoVeiculo, codigoMarca.ToString()).Carregar();
         }
 
         /// <summary> Carrega os anos de um modelo de veículo da tabela Fipe</summary>

@@ -1,5 +1,6 @@
-﻿using CheckFipe.Domain.Enumerators;
-using CheckFipe.Models;
+﻿using CheckFipe.Domain.Entities;
+using CheckFipe.Domain.Enumerators;
+using CheckFipe.Infraestructure.Proxy.Services;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +15,9 @@ namespace CheckFipe.Teste.ModelsTest
         public void ValidarCarregamentoDasMarcas(TipoVeiculo tipoVeiculo, long codigoMarca, long codigoModeloEsperado, string nomeModeloEsperado)
         {
 
-            IEnumerable<Modelo> retorno = Modelo.Carregar(tipoVeiculo, codigoMarca);
+            IEnumerable<Modelo> retorno = new ModeloService(tipoVeiculo, codigoMarca.ToString()).Carregar();
             Assert.IsNotNull(retorno);
-            Assert.IsTrue(retorno.Count(marca => marca.Codigo == codigoModeloEsperado && marca.Nome == nomeModeloEsperado) > 0);
+            Assert.IsTrue(retorno.Count(modelo => modelo.Id == codigoModeloEsperado && modelo.Nome == nomeModeloEsperado) > 0);
         }
     }
 }
