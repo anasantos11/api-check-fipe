@@ -1,5 +1,5 @@
 ﻿using CheckFipe.Domain.Enumerators;
-using CheckFipe.Helpers;
+using CheckFipe.Infraestructure.Proxy.Helpers;
 using CheckFipe.Infraestructure.Proxy.Enumerators;
 using System.Linq;
 

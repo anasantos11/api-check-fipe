@@ -1,5 +1,5 @@
 ﻿using CheckFipe.Domain.Exceptions;
-using CheckFipe.Helpers;
+using CheckFipe.Infraestructure.Proxy.Helpers;
 using NUnit.Framework;
 
 namespace CheckFipe.Teste

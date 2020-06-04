@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Net.Http;
 
-namespace CheckFipe.Helpers
+namespace CheckFipe.Infraestructure.Proxy.Helpers
 {
     public class HttpHelper
     {
