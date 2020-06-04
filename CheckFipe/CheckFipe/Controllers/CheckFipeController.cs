@@ -18,15 +18,6 @@ namespace CheckFipe.Controllers
             this.Context = context;
         }
 
-        /// <summary> Carrega as consultas realizadas de veículos a tabela Fipe.</summary>
-        /// <remarks> Exemplo requisição: GET /api/CheckFipe/CarregarVeiculosConsultados </remarks>
-        /// <returns> Lista contendo todas as consultas de veículos realizadas a tabela fipe.</returns>
-        [HttpGet]
-        public IEnumerable<ConsultaVeiculo> CarregarVeiculosConsultados()
-        {
-            return new CarregarConsultasVeiculosRealizadas(this.Context).Carregar();
-        }
-
         /// <summary> Carrega os 3 veículos mais procurados.</summary>
         /// <remarks> Exemplo requisição: GET /api/CheckFipe/CarregarVeiculosMaisProcurados </remarks>
         /// <returns> Lista contendo os três veículos mais procurados.</returns>
