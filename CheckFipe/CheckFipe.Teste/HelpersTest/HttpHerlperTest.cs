@@ -1,4 +1,4 @@
-﻿using CheckFipe.Exceptions;
+﻿using CheckFipe.Domain.Exceptions;
 using CheckFipe.Helpers;
 using NUnit.Framework;
 

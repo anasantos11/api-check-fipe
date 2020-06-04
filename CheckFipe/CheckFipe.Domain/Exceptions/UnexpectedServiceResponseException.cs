@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CheckFipe.Exceptions
+namespace CheckFipe.Domain.Exceptions
 {
     public class UnexpectedServiceResponseException : Exception
     {

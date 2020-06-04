@@ -1,4 +1,4 @@
-﻿using CheckFipe.Exceptions;
+﻿using CheckFipe.Domain.Exceptions;
 using Newtonsoft.Json;
 using System;
 using System.Net.Http;
@@ -18,10 +18,8 @@ namespace CheckFipe.Helpers
         {
             try
             {
-                using (var httpClient = new HttpClient())
-                {
-                    return JsonConvert.DeserializeObject<T>(httpClient.GetStringAsync(this.Url).Result);
-                }
+                using var httpClient = new HttpClient();
+                return JsonConvert.DeserializeObject<T>(httpClient.GetStringAsync(this.Url).Result);
             }
             catch (Exception exception)
             {
