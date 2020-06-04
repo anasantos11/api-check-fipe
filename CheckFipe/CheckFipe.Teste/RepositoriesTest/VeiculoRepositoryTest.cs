@@ -1,4 +1,4 @@
-﻿using CheckFipe.Context;
+﻿using CheckFipe.Teste.ContextTest;
 using CheckFipe.Domain.Entities;
 using CheckFipe.Infrastructure.Data.Repositories;
 using Microsoft.EntityFrameworkCore;

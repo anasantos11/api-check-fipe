@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
 using CheckFipe.Application;
 using CheckFipe.Application.CarregarVeiculosMaisProcurados;
-using CheckFipe.Context;
-using CheckFipe.Domain.Entities;
+using CheckFipe.Teste.ContextTest;
 using CheckFipe.Domain.Enumerators;
 using CheckFipe.Infrastructure.Data.Repositories;
 using CheckFipe.UseCase;

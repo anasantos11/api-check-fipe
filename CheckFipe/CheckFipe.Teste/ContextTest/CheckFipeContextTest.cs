@@ -1,6 +1,6 @@
 ﻿using CheckFipe.Infrastructure.Data.Contexts;
 
-namespace CheckFipe.Context
+namespace CheckFipe.Teste.ContextTest
 {
     public class CheckFipeContextTest : CheckFipeContext
     {
