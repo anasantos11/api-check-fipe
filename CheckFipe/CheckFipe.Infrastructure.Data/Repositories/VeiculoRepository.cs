@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CheckFipe.Infrastructure.Data.Repositories
 {
-    public class VeiculoRepository : IRepository<Veiculo>
+    public class VeiculoRepository : IVeiculoWriteOnlyRepository, IVeiculoReadOnlyRepository
     {
         private readonly ICheckFipeContext VeiculoContext;
 

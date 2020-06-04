@@ -5,8 +5,7 @@ using System.Text;
 
 namespace CheckFipe.Domain.Interfaces
 {
-    public interface IConsultaVeiculoReadOnlyRepository : IReadOnlyRepository<ConsultaVeiculo>
+    public interface IVeiculoWriteOnlyRepository : IWriteOnlyRepository<Veiculo>
     {
-        
     }
 }

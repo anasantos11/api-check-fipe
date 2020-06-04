@@ -5,8 +5,9 @@ using System.Text;
 
 namespace CheckFipe.Domain.Interfaces
 {
-    public interface IConsultaVeiculoReadOnlyRepository : IReadOnlyRepository<ConsultaVeiculo>
+    public interface IWriteOnlyRepository<T> where T : BaseEntity
     {
-        
+        void Cadastrar(T objeto);
+        void Atualizar(T objeto);
     }
 }
