@@ -56,7 +56,7 @@ namespace CheckFipe.UseCase
                 veiculo.AddConsultaVeiculo();
                 veiculoRepository.Atualizar(veiculo);
             }
-
+            this.Context.SaveChanges();
 
             return retornoFipe;
         }
