@@ -41,6 +41,7 @@ namespace CheckFipe
             services.AddScoped<IConsultaVeiculoReadOnlyRepository, ConsultaVeiculoRepository>();
             services.AddScoped<IVeiculoReadOnlyRepository, VeiculoRepository>();
             services.AddScoped<IVeiculoWriteOnlyRepository, VeiculoRepository>();
+            services.AddScoped<IVeiculoWriteReadRepository, VeiculoRepository>();
             services.AddScoped<ICarregarConsultasVeiculosUseCase, CarregarConsultasVeiculosUseCase>();
             services.AddScoped<ICarregarVeiculosMaisProcuradosUseCase, CarregarVeiculosMaisProcuradosUseCase>();
 
