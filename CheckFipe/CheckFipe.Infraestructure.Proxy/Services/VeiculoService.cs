@@ -12,10 +12,16 @@ namespace CheckFipe.Infraestructure.Proxy.Services
 {
     public class VeiculoService : FipeBaseService, IVeiculoService
     {
-        public VeiculoService(TipoVeiculo tipoVeiculo, string codigoMarca, string codigoModelo, string codigoAno)
-            : base(tipoVeiculo, TipoAcaoFipe.Veiculo, codigoMarca, codigoModelo, codigoAno)
-        {
+        private readonly long CodigoMarca;
+        private readonly long CodigoModelo;
+        private readonly string CodigoAno;
 
+        public VeiculoService(TipoVeiculo tipoVeiculo, long codigoMarca, long codigoModelo, string codigoAno)
+            : base(tipoVeiculo, TipoAcaoFipe.Veiculo, codigoMarca.ToString(), codigoModelo.ToString(), codigoAno)
+        {
+            this.CodigoMarca = codigoMarca;
+            this.CodigoModelo = codigoModelo;
+            this.CodigoAno = codigoAno;
         }
 
         public Veiculo Carregar()
@@ -23,17 +29,19 @@ namespace CheckFipe.Infraestructure.Proxy.Services
             IMapper mapperConfig = new MapperConfiguration(config =>
             {
                 config.CreateMap<FipeVeiculoOutput, Veiculo>()
-                    .ForMember(veiculo => veiculo.CodigoAnoModelo, opts => opts.MapFrom(veiculoFipe => veiculoFipe.AnoModelo))
+                    .ForMember(veiculo => veiculo.CodigoAnoModelo, opts => opts.MapFrom(veiculoFipe => this.CodigoAno))
                     .ForMember(veiculo => veiculo.Modelo,
                         opts => opts.MapFrom(veiculoFipe => new Domain.Entities.Modelo()
                         {
+                            Id = this.CodigoModelo,
                             Nome = veiculoFipe.DescricaoModelo,
                             Marca = new Marca()
                             {
+                                Id = this.CodigoMarca,
                                 Nome = veiculoFipe.DescricaoMarca
                             }
                         })
-                    );
+                    ) ;
             }).CreateMapper();
 
             return mapperConfig.Map<Veiculo>(Carregar<FipeVeiculoOutput>());
