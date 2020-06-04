@@ -1,4 +1,9 @@
+using AutoMapper;
+using CheckFipe.Application.CarregarConsultasVeiculos;
+using CheckFipe.Domain.Interfaces;
 using CheckFipe.Infrastructure.Data.Contexts;
+using CheckFipe.Infrastructure.Data.Interfaces;
+using CheckFipe.Infrastructure.Data.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -31,7 +36,11 @@ namespace CheckFipe
             services.AddControllers();
             services.AddDbContext<CheckFipeContext>(options => options.UseInMemoryDatabase("CheckFipeContext"));
 
-
+            services.AddScoped<ICheckFipeContext, CheckFipeContext>();
+            services.AddScoped<IConsultaVeiculoReadOnlyRepository, ConsultaVeiculoRepository>();
+            services.AddScoped<ICarregarConsultasVeiculosUseCase, CarregarConsultasVeiculosUseCase>();
+            
+            services.AddAutoMapper(typeof(Startup));
             services.AddSwaggerGen(configSwagger =>
             {
                 configSwagger.SwaggerDoc("v1",

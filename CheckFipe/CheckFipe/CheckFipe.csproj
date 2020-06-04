@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0">
@@ -33,6 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CheckFipe.Application\CheckFipe.Application.csproj" />
     <ProjectReference Include="..\CheckFipe.Domain\CheckFipe.Domain.csproj" />
     <ProjectReference Include="..\CheckFipe.Infrastructure.Data\CheckFipe.Infrastructure.Data.csproj" />
   </ItemGroup>
