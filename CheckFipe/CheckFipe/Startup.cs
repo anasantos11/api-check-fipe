@@ -1,5 +1,6 @@
 using AutoMapper;
 using CheckFipe.Application.CarregarConsultasVeiculos;
+using CheckFipe.Application.CarregarVeiculosMaisProcurados;
 using CheckFipe.Domain.Interfaces;
 using CheckFipe.Infrastructure.Data.Contexts;
 using CheckFipe.Infrastructure.Data.Interfaces;
@@ -38,8 +39,11 @@ namespace CheckFipe
 
             services.AddScoped<ICheckFipeContext, CheckFipeContext>();
             services.AddScoped<IConsultaVeiculoReadOnlyRepository, ConsultaVeiculoRepository>();
+            services.AddScoped<IVeiculoReadOnlyRepository, VeiculoRepository>();
+            services.AddScoped<IVeiculoWriteOnlyRepository, VeiculoRepository>();
             services.AddScoped<ICarregarConsultasVeiculosUseCase, CarregarConsultasVeiculosUseCase>();
-            
+            services.AddScoped<ICarregarVeiculosMaisProcuradosUseCase, CarregarVeiculosMaisProcuradosUseCase>();
+
             services.AddAutoMapper(typeof(Startup));
             services.AddSwaggerGen(configSwagger =>
             {
