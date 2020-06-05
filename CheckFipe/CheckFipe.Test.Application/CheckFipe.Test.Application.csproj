@@ -16,6 +16,8 @@
   <ItemGroup>
     <ProjectReference Include="..\CheckFipe.Application\CheckFipe.Application.csproj" />
     <ProjectReference Include="..\CheckFipe.Domain\CheckFipe.Domain.csproj" />
+    <ProjectReference Include="..\CheckFipe.Infraestructure.Proxy\CheckFipe.Infraestructure.Proxy.csproj" />
+    <ProjectReference Include="..\CheckFipe.Infrastructure.Data\CheckFipe.Infrastructure.Data.csproj" />
   </ItemGroup>
 
 </Project>
