@@ -1,11 +1,9 @@
-# Check Fipe - API Web com ASP.NET Core 3.0
+# Check Fipe - Clean Architecture Principles - API Web com ASP.NET Core 3.0
 
-Criada uma API Web com ASP.NET Core com serviços para consultas de dados na tabela Fipe. 
+Implementado Clean Architecture Principles com ASP.NET Core em uma aplicação de serviços para consultas de dados na tabela Fipe.
 
 Foram consumidos dados da [API de Consulta da Tabela Fipe](http://fipeapi.appspot.com/) e providos novos serviços para consultar marcas, modelos, anos e dados de um veículo específico na tabela Fipe. 
-As consultas de um veículo em específico são armazenadas e, com isso, são providos dois outros serviços: um para visualizar as consultas realizadas e outro para saber os 3 veículos mais buscados. 
-
-A API foi implantada no Microsoft Azure e pode ser acessada através deste [link](https://api-check-fipe.azurewebsites.net/swagger).
+As consultas de um veículo em específico são armazenadas e, com isso, são providos dois outros serviços: um para visualizar as consultas realizadas e outro para saber os veículos mais procurados. 
 
 O projeto pode ser executado em sua máquina pelo Visual Studio Professional, Visual Studio Code e Visual Studio para Mac, conforme orientações desta [página](https://docs.microsoft.com/pt-br/aspnet/core/tutorials/first-web-api?view=aspnetcore-3.0&tabs=visual-studio) que foram resumidas no texto abaixo.
 
