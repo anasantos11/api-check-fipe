@@ -1,7 +1,10 @@
 using AutoMapper;
+using CheckFipe.Application.BuscarVeiculo;
 using CheckFipe.Application.CarregarConsultasVeiculos;
 using CheckFipe.Application.CarregarVeiculosMaisProcurados;
 using CheckFipe.Domain.RepositoriesInterfaces;
+using CheckFipe.Domain.ServicesInterfaces;
+using CheckFipe.Infraestructure.Proxy.Services;
 using CheckFipe.Infrastructure.Data.Contexts;
 using CheckFipe.Infrastructure.Data.Interfaces;
 using CheckFipe.Infrastructure.Data.Repositories;
@@ -38,11 +41,19 @@ namespace CheckFipe
             services.AddDbContext<CheckFipeContext>(options => options.UseInMemoryDatabase("CheckFipeContext"));
 
             services.AddScoped<ICheckFipeContext, CheckFipeContext>();
+
             services.AddScoped<IConsultaVeiculoReadOnlyRepository, ConsultaVeiculoRepository>();
             services.AddScoped<IVeiculoReadOnlyRepository, VeiculoRepository>();
             services.AddScoped<IVeiculoWriteOnlyRepository, VeiculoRepository>();
             services.AddScoped<IVeiculoWriteReadRepository, VeiculoRepository>();
+
+            services.AddScoped<IMarcaService, MarcaService>();
+            services.AddScoped<IModeloService, ModeloService>();
+            services.AddScoped<IAnoService, AnoService>();
+            services.AddScoped<IVeiculoService, VeiculoService>();
+
             services.AddScoped<ICarregarConsultasVeiculosUseCase, CarregarConsultasVeiculosUseCase>();
+            services.AddScoped<IBuscarVeiculoUseCase, BuscarVeiculoUseCase>();
             services.AddScoped<ICarregarVeiculosMaisProcuradosUseCase, CarregarVeiculosMaisProcuradosUseCase>();
 
             services.AddAutoMapper(typeof(Startup));
