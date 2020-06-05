@@ -15,8 +15,8 @@ namespace CheckFipe.Infrastructure.Data.Contexts
         {
         }
 
-        public DbSet<ConsultaVeiculo> ConsultasVeiculo { get; set; }
-        public DbSet<Veiculo> Veiculos { get; set; }
+        public virtual DbSet<ConsultaVeiculo> ConsultasVeiculo { get; set; }
+        public virtual DbSet<Veiculo> Veiculos { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
