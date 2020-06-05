@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CheckFipe.Application;
+using CheckFipe.Application.CarregarAnos;
 using CheckFipe.Application.CarregarConsultasVeiculos;
 using CheckFipe.Application.CarregarMarcas;
 using CheckFipe.Application.CarregarModelos;
@@ -19,6 +20,9 @@ namespace CheckFipe
                  .ForMember(marcaOutput => marcaOutput.Codigo, opts => opts.MapFrom(marca => marca.Id));
             CreateMap<Modelo, CarregarModelosOutput>()
                  .ForMember(modeloOutput => modeloOutput.Codigo, opts => opts.MapFrom(modelo => modelo.Id));
+            CreateMap<Ano, CarregarAnosOutput>()
+                .ForMember(anoOutput => anoOutput.Codigo, opts => opts.MapFrom(ano => ano.CodigoAnoModelo))
+                .ForMember(anoOutput => anoOutput.Nome, opts => opts.MapFrom(ano => ano.AnoModelo));
         }
     }
 }

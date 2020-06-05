@@ -1,5 +1,6 @@
 using AutoMapper;
 using CheckFipe.Application.BuscarVeiculo;
+using CheckFipe.Application.CarregarAnos;
 using CheckFipe.Application.CarregarConsultasVeiculos;
 using CheckFipe.Application.CarregarMarcas;
 using CheckFipe.Application.CarregarModelos;
@@ -59,6 +60,7 @@ namespace CheckFipe
             services.AddScoped<ICarregarVeiculosMaisProcuradosUseCase, CarregarVeiculosMaisProcuradosUseCase>();
             services.AddScoped<ICarregarMarcasUseCase, CarregarMarcasUseCase>();
             services.AddScoped<ICarregarModelosUseCase, CarregarModelosUseCase>();
+            services.AddScoped<ICarregarAnosUseCase, CarregarAnosUseCase>();
 
             services.AddAutoMapper(typeof(Startup));
             services.AddSwaggerGen(configSwagger =>
