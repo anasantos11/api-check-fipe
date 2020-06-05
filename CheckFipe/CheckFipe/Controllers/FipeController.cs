@@ -12,16 +12,6 @@ namespace CheckFipe.Controllers
     [ApiController]
     public class FipeController : ControllerBase
     {
-        /// <summary> Carrega as marcas dos veículo da tabela Fipe.</summary>
-        /// <remarks> Exemplo requisição:    GET /api/Fipe/CarregarMarcas/Carros </remarks>
-        /// <param name="tipoVeiculo">Tipo do Veículo</param>
-        /// <returns>Lista contendo todas as marcas do tipo de veículo informado, com o código e nome da marca.</returns>
-        [HttpGet("{tipoVeiculo}")]
-        public IEnumerable<Marca> CarregarMarcas(TipoVeiculo tipoVeiculo)
-        {
-            return new MarcaService().Carregar(tipoVeiculo);
-        }
-
         /// <summary> Carrega os modelos de uma marca de veículo da tabela Fipe</summary>
         /// <remarks> Exemplo requisição:    GET /api/Fipe/CarregarModelos/Carros/21 </remarks>
         /// <param name="tipoVeiculo">Tipo do Veículo</param>
