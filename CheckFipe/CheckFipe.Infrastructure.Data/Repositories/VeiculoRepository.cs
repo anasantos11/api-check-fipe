@@ -37,6 +37,7 @@ namespace CheckFipe.Infrastructure.Data.Repositories
             {
                 Cadastrar(veiculo);
             }
+            this.VeiculoContext.SaveChanges();
         }
 
         public IEnumerable<Veiculo> Carregar()
