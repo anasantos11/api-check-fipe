@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckFipe.Application", "Ch
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckFipe.Infraestructure.Proxy", "CheckFipe.Infraestructure.Proxy\CheckFipe.Infraestructure.Proxy.csproj", "{A4FB88F6-9CF3-4733-95B4-CDD397BABF39}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckFipe.Test.Application", "CheckFipe.Test.Application\CheckFipe.Test.Application.csproj", "{3BD6CB49-41D4-44B7-B168-94056992D66E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckFipe.Test.Application", "CheckFipe.Test.Application\CheckFipe.Test.Application.csproj", "{3BD6CB49-41D4-44B7-B168-94056992D66E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

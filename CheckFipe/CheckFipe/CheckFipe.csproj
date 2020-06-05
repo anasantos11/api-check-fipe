@@ -8,6 +8,7 @@
     <OpenApiGenerateDocuments>false</OpenApiGenerateDocuments>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <NoWarn>$(NoWarn);1591</NoWarn>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
