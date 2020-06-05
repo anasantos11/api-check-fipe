@@ -14,7 +14,7 @@ namespace CheckFipe.Application.BuscarVeiculo
             this.Mapper = mapper;
         }
 
-        public VeiculoOutput Carregar(TipoVeiculo tipoVeiculo, long codigoMarca, long codigoModelo, string codigoAno)
+        public VeiculoOutput Execute(TipoVeiculo tipoVeiculo, long codigoMarca, long codigoModelo, string codigoAno)
         {
             return this.Mapper.Map<VeiculoOutput>(this.VeiculoService.Carregar(tipoVeiculo, codigoMarca, codigoModelo, codigoAno));
         }
