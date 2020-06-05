@@ -10,7 +10,7 @@ using CheckFipe.Infraestructure.Proxy.DataTransferObjects;
 
 namespace CheckFipe.Teste
 {
-    public class Tests
+    public class FipeBaseServiceTest
     {
 
         [TestCase(TipoVeiculo.Carros, TipoAcaoFipe.Marcas, ExpectedResult = "http://fipeapi.appspot.com/api/1/carros/marcas.json")]

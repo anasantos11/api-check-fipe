@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace CheckFipe.Teste.ModelsTest
 {
-    public class AnoTest
+    public class AnoServiceTest
     {
         [TestCase(TipoVeiculo.Carros, 21, 4828, "2013-1", "2013 Gasolina")]
         [TestCase(TipoVeiculo.Motos, 101, 3060, "1995-1", "1995")]

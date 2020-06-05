@@ -5,7 +5,7 @@ using NUnit.Framework;
 
 namespace CheckFipe.Teste
 {
-    public class RetornoTest
+    public class FipeBaseOutputTest
     {
         [Test]
         public void ValidarSerializacaoObjeto()
