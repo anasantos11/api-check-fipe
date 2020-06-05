@@ -12,14 +12,9 @@ namespace CheckFipe.Infraestructure.Proxy.Services
 {
     public class MarcaService : FipeBaseService, IMarcaService
     {
-        public MarcaService(TipoVeiculo tipoVeiculo) : base(tipoVeiculo, TipoAcaoFipe.Marcas)
+        public IEnumerable<Marca> Carregar(TipoVeiculo tipoVeiculo)
         {
-
-        }
-
-        public IEnumerable<Marca> Carregar()
-        {
-            return Carregar<IEnumerable<FipeBaseOutput>>()
+            return Carregar<IEnumerable<FipeBaseOutput>>(tipoVeiculo, TipoAcaoFipe.Marcas)
                 .Select(retornoFipe => new Marca()
                 {
                     Id = Convert.ToInt64(retornoFipe.Codigo),

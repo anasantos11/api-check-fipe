@@ -28,12 +28,12 @@ namespace CheckFipe.Teste
         public string ValidarCarregamentoDaUrl(TipoVeiculo tipoVeiculo, TipoAcaoFipe acao, params string[] parametros)
         {
             Type type = typeof(FipeBaseService);
-            object consultaFipe = Activator.CreateInstance(type, tipoVeiculo, acao, parametros);
+            object consultaFipe = Activator.CreateInstance(type);
             MethodInfo metodoCarregarUrl = type.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
                 .Where(metodo => metodo.Name == "CarregarUrl" && metodo.IsPrivate)
                 .First();
 
-            return (string)metodoCarregarUrl.Invoke(consultaFipe, null);
+            return (string)metodoCarregarUrl.Invoke(consultaFipe, new object[] { tipoVeiculo, acao, parametros });
         }
 
         [TestCase(TipoVeiculo.Carros, "JEEP")]
@@ -42,7 +42,7 @@ namespace CheckFipe.Teste
         public void ValidarCarregamentoDasMarcas(TipoVeiculo tipoVeiculo, string marcaEsperada)
         {
 
-            IEnumerable<FipeBaseOutput> retorno = new FipeBaseService(tipoVeiculo, TipoAcaoFipe.Marcas).Carregar<IEnumerable<FipeBaseOutput>>();
+            IEnumerable<FipeBaseOutput> retorno = new FipeBaseService().Carregar<IEnumerable<FipeBaseOutput>>(tipoVeiculo, TipoAcaoFipe.Marcas);
             Assert.IsNotNull(retorno);
             Assert.IsTrue(retorno.Count(marca => marca.Nome == marcaEsperada) > 0);
         }

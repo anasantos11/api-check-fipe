@@ -6,6 +6,6 @@ namespace CheckFipe.Domain.ServicesInterfaces
 {
     public interface IMarcaService
     {
-        IEnumerable<Marca> Carregar();
+        IEnumerable<Marca> Carregar(TipoVeiculo tipoVeiculo);
     }
 }

@@ -23,7 +23,7 @@ namespace CheckFipe.UseCase
 
             if (veiculo == null)
             {
-                veiculo = new VeiculoService(tipoVeiculo, codigoMarca, codigoModelo, codigoAno).Carregar();
+                veiculo = new VeiculoService().Carregar(tipoVeiculo, codigoMarca, codigoModelo, codigoAno);
             }
 
             veiculo.AddConsultaVeiculo();

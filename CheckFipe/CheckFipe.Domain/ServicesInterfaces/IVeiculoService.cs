@@ -1,12 +1,10 @@
 ﻿using CheckFipe.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using CheckFipe.Domain.Enumerators;
 
 namespace CheckFipe.Domain.ServicesInterfaces
 {
     public interface IVeiculoService
     {
-        Veiculo Carregar();
+        Veiculo Carregar(TipoVeiculo tipoVeiculo, long codigoMarca, long codigoModelo, string codigoAno);
     }
 }

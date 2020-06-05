@@ -11,13 +11,9 @@ namespace CheckFipe.Infraestructure.Proxy.Services
 {
     public class ModeloService : FipeBaseService, IModeloService
     {
-        public ModeloService(TipoVeiculo tipoVeiculo, string codigoMarca): base(tipoVeiculo, TipoAcaoFipe.Veiculos, codigoMarca)
+        public IEnumerable<Modelo> Carregar(TipoVeiculo tipoVeiculo, string codigoMarca)
         {
-
-        }
-        public IEnumerable<Modelo> Carregar()
-        {
-            return Carregar<IEnumerable<FipeBaseOutput>>()
+            return Carregar<IEnumerable<FipeBaseOutput>>(tipoVeiculo, TipoAcaoFipe.Veiculos, codigoMarca)
                 .Select(retornoFipe => new Modelo()
                 {
                     Id = Convert.ToInt64(retornoFipe.Codigo),

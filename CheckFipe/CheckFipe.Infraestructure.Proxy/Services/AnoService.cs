@@ -10,14 +10,9 @@ namespace CheckFipe.Infraestructure.Proxy.Services
 {
     public class AnoService : FipeBaseService, IAnoService
     {
-        public AnoService(TipoVeiculo tipoVeiculo, string codigoMarca, string codigoModelo) : base(tipoVeiculo, TipoAcaoFipe.Veiculo, codigoMarca, codigoModelo)
+        public IEnumerable<Ano> Carregar(TipoVeiculo tipoVeiculo, string codigoMarca, string codigoModelo)
         {
-
-        }
-
-        public IEnumerable<Ano> Carregar()
-        {
-            return Carregar<IEnumerable<FipeBaseOutput>>()
+            return Carregar<IEnumerable<FipeBaseOutput>>(tipoVeiculo, TipoAcaoFipe.Veiculo, codigoMarca, codigoModelo)
                 .Select(retornoFipe => new Ano()
                 {
                     CodigoAnoModelo = retornoFipe.Codigo,

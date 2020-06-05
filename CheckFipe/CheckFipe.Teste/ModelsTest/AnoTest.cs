@@ -15,7 +15,7 @@ namespace CheckFipe.Teste.ModelsTest
         public void ValidarCarregamentoDosAnos(TipoVeiculo tipoVeiculo, long codigoMarca, long codigoModelo, string codigoAnoEsperado, string descricaoAnoEsperado)
         {
 
-            IEnumerable<Ano> retorno = new AnoService(tipoVeiculo, codigoMarca.ToString(), codigoModelo.ToString()).Carregar();
+            IEnumerable<Ano> retorno = new AnoService().Carregar(tipoVeiculo, codigoMarca.ToString(), codigoModelo.ToString());
             Assert.IsNotNull(retorno);
             Assert.IsTrue(retorno.Count(ano => ano.CodigoAnoModelo == codigoAnoEsperado && ano.AnoModelo == descricaoAnoEsperado) > 0);
         }

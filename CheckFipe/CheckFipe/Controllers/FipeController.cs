@@ -27,7 +27,7 @@ namespace CheckFipe.Controllers
         [HttpGet("{tipoVeiculo}")]
         public IEnumerable<Marca> CarregarMarcas(TipoVeiculo tipoVeiculo)
         {
-            return new MarcaService(tipoVeiculo).Carregar();
+            return new MarcaService().Carregar(tipoVeiculo);
         }
 
         /// <summary> Carrega os modelos de uma marca de veículo da tabela Fipe</summary>
@@ -38,7 +38,7 @@ namespace CheckFipe.Controllers
         [HttpGet("{tipoVeiculo}/{codigoMarca}")]
         public IEnumerable<Modelo> CarregarModelos(TipoVeiculo tipoVeiculo, long codigoMarca)
         {
-            return new ModeloService(tipoVeiculo, codigoMarca.ToString()).Carregar();
+            return new ModeloService().Carregar(tipoVeiculo, codigoMarca.ToString());
         }
 
         /// <summary> Carrega os anos de um modelo de veículo da tabela Fipe</summary>
@@ -50,7 +50,7 @@ namespace CheckFipe.Controllers
         [HttpGet("{tipoVeiculo}/{codigoMarca}/{codigoModelo}")]
         public IEnumerable<Ano> CarregarAnos(TipoVeiculo tipoVeiculo, long codigoMarca, long codigoModelo)
         {
-            return new AnoService(tipoVeiculo, codigoMarca.ToString(), codigoModelo.ToString()).Carregar();
+            return new AnoService().Carregar(tipoVeiculo, codigoMarca.ToString(), codigoModelo.ToString());
         }
 
         /// <summary> Carrega os dados de um veículo da tabela Fipe</summary>

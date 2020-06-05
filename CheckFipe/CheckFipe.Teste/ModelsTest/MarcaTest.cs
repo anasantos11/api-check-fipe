@@ -16,7 +16,7 @@ namespace CheckFipe.Teste.ModelsTest
         public void ValidarCarregamentoDasMarcas(TipoVeiculo tipoVeiculo, string marcaEsperada)
         {
 
-            IEnumerable<Marca> retorno = new MarcaService(tipoVeiculo).Carregar();
+            IEnumerable<Marca> retorno = new MarcaService().Carregar(tipoVeiculo);
             Assert.IsNotNull(retorno);
             Assert.IsTrue(retorno.Count(marca => marca.Nome == marcaEsperada) > 0);
         }
