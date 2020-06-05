@@ -2,7 +2,6 @@
 using CheckFipe.Domain.Enumerators;
 using CheckFipe.Infraestructure.Proxy.Services;
 using CheckFipe.Infrastructure.Data.Contexts;
-using CheckFipe.UseCase;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -13,13 +12,6 @@ namespace CheckFipe.Controllers
     [ApiController]
     public class FipeController : ControllerBase
     {
-        private readonly CheckFipeContext Context;
-
-        public FipeController(CheckFipeContext context)
-        {
-            this.Context = context;
-        }
-
         /// <summary> Carrega as marcas dos veículo da tabela Fipe.</summary>
         /// <remarks> Exemplo requisição:    GET /api/Fipe/CarregarMarcas/Carros </remarks>
         /// <param name="tipoVeiculo">Tipo do Veículo</param>
@@ -51,19 +43,6 @@ namespace CheckFipe.Controllers
         public IEnumerable<Ano> CarregarAnos(TipoVeiculo tipoVeiculo, long codigoMarca, long codigoModelo)
         {
             return new AnoService().Carregar(tipoVeiculo, codigoMarca.ToString(), codigoModelo.ToString());
-        }
-
-        /// <summary> Carrega os dados de um veículo da tabela Fipe</summary>
-        /// <remarks> Exemplo requisição:    GET /api/CheckFipe/BuscarVeiculo/Carros/21/4828/2013-1 </remarks>
-        /// <param name="tipoVeiculo">Tipo do Veículo</param>
-        /// <param name="codigoMarca">Código da Marca</param>
-        /// <param name="codigoModelo">Código do Modelo</param>
-        /// <param name="codigoAno">Código do Ano</param>
-        /// <returns>Dados do veículo na tabela fipe.</returns>
-        [HttpGet("{tipoVeiculo}/{codigoMarca}/{codigoModelo}/{codigoAno}")]
-        public Veiculo BuscarVeiculo(TipoVeiculo tipoVeiculo, long codigoMarca, long codigoModelo, string codigoAno)
-        {
-            return new BuscarVeiculoTabelaFipe(this.Context).Carregar(tipoVeiculo, codigoMarca, codigoModelo, codigoAno);
         }
     }
 }

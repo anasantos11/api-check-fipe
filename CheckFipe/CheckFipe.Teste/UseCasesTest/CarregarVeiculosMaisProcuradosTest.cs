@@ -4,10 +4,11 @@ using CheckFipe.Application.CarregarVeiculosMaisProcurados;
 using CheckFipe.Teste.ContextTest;
 using CheckFipe.Domain.Enumerators;
 using CheckFipe.Infrastructure.Data.Repositories;
-using CheckFipe.UseCase;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
+using CheckFipe.Infraestructure.Proxy.Services;
+using CheckFipe.Application.BuscarVeiculo;
 
 namespace CheckFipe.Teste.UseCasesTest
 {
@@ -18,28 +19,31 @@ namespace CheckFipe.Teste.UseCasesTest
         [TestCase(TipoVeiculo.Caminhoes, 109, 3302, "1997-3", "509001-6", "1997", "Diesel")]
         public void ValidarCarregarConsultasVeiculosRealizadas(TipoVeiculo tipoVeiculo, long codigoMarca, long codigoModelo, string codigoAno, string codigoFipeEsperado, string anoEsperado, string combustivelEsperado)
         {
-            using var context = new CheckFipeContextTest();
-
-            var retornoFipe = new BuscarVeiculoTabelaFipe(context).Carregar(tipoVeiculo, codigoMarca, codigoModelo, codigoAno);
-            context.SaveChanges();
-            new BuscarVeiculoTabelaFipe(context).Carregar(tipoVeiculo, codigoMarca, codigoModelo, codigoAno);
-            context.SaveChanges();
-            new BuscarVeiculoTabelaFipe(context).Carregar(tipoVeiculo, codigoMarca, codigoModelo, codigoAno);
-            context.SaveChanges();
-
-            var repository = new VeiculoRepository(context);
             IMapper mapperConfig = new MapperConfiguration(config =>
             {
                 config.AddProfile(new MapperConfig());
             }).CreateMapper();
 
-            IEnumerable<VeiculoOutput> veiculosMaisProcurados = new CarregarVeiculosMaisProcuradosUseCase(repository, mapperConfig).Execute(3);
+            using var context = new CheckFipeContextTest();
+            var veiculoService = new VeiculoService();
+            var veiculoRepository = new VeiculoRepository(context);
+
+            VeiculoOutput retornoFipe = new BuscarVeiculoUseCase(veiculoService, veiculoRepository, mapperConfig)
+                .Execute(tipoVeiculo, codigoMarca, codigoModelo, codigoAno);
+
+            new BuscarVeiculoUseCase(veiculoService, veiculoRepository, mapperConfig)
+                 .Execute(tipoVeiculo, codigoMarca, codigoModelo, codigoAno);
+
+            new BuscarVeiculoUseCase(veiculoService, veiculoRepository, mapperConfig)
+                .Execute(tipoVeiculo, codigoMarca, codigoModelo, codigoAno);
+
+            IEnumerable<VeiculoOutput> veiculosMaisProcurados = new CarregarVeiculosMaisProcuradosUseCase(veiculoRepository, mapperConfig).Execute(3);
 
             Assert.IsNotNull(veiculosMaisProcurados);
             Assert.AreEqual(1, veiculosMaisProcurados.Count());
             Assert.AreEqual(3, veiculosMaisProcurados.First().NumeroDeConsultas);
-            Assert.AreEqual(retornoFipe.Modelo.Marca.Nome, veiculosMaisProcurados.First().DescricaoMarca);
-            Assert.AreEqual(retornoFipe.Modelo.Nome, veiculosMaisProcurados.First().DescricaoModelo);
+            Assert.AreEqual(retornoFipe.DescricaoMarca, veiculosMaisProcurados.First().DescricaoMarca);
+            Assert.AreEqual(retornoFipe.DescricaoModelo, veiculosMaisProcurados.First().DescricaoModelo);
             Assert.AreEqual(codigoFipeEsperado, veiculosMaisProcurados.First().CodigoFipe);
             Assert.AreEqual(anoEsperado, veiculosMaisProcurados.First().AnoModelo);
             Assert.AreEqual(combustivelEsperado, veiculosMaisProcurados.First().DescricaoCombustivel);

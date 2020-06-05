@@ -1,8 +1,12 @@
 ﻿using CheckFipe.Teste.ContextTest;
 using CheckFipe.Domain.Entities;
 using CheckFipe.Domain.Enumerators;
-using CheckFipe.UseCase;
 using NUnit.Framework;
+using CheckFipe.Application.BuscarVeiculo;
+using CheckFipe.Infraestructure.Proxy.Services;
+using CheckFipe.Infrastructure.Data.Repositories;
+using AutoMapper;
+using CheckFipe.Application;
 
 namespace CheckFipe.Teste.UseCaseTest
 {
@@ -13,11 +17,17 @@ namespace CheckFipe.Teste.UseCaseTest
         [TestCase(TipoVeiculo.Caminhoes, 109, 3302, "1997-3", "509001-6", "MERCEDES-BENZ", "1114 3-Eixos 2p (diesel)", "1997", "Diesel")]
         public void ValidarCarregamentoDosAnos(TipoVeiculo tipoVeiculo, long codigoMarca, long codigoModelo, string codigoAno, string codigoFipeEsperado, string marcaEsperada, string modeloEsperado, string anoEsperado, string combustivelEsperado)
         {
-            Veiculo veiculoBuscado = new BuscarVeiculoTabelaFipe(new CheckFipeContextTest()).Carregar(tipoVeiculo, codigoMarca, codigoModelo, codigoAno);
+            IMapper mapperConfig = new MapperConfiguration(config =>
+            {
+                config.AddProfile(new MapperConfig());
+            }).CreateMapper();
+
+            VeiculoOutput veiculoBuscado = new BuscarVeiculoUseCase(new VeiculoService(), new VeiculoRepository(new CheckFipeContextTest()), mapperConfig)
+                .Execute(tipoVeiculo, codigoMarca, codigoModelo, codigoAno);
 
             Assert.IsNotNull(veiculoBuscado);
-            Assert.AreEqual(marcaEsperada, veiculoBuscado.Modelo.Marca.Nome);
-            Assert.AreEqual(modeloEsperado, veiculoBuscado.Modelo.Nome);
+            Assert.AreEqual(marcaEsperada, veiculoBuscado.DescricaoMarca);
+            Assert.AreEqual(modeloEsperado, veiculoBuscado.DescricaoModelo);
             Assert.AreEqual(codigoFipeEsperado, veiculoBuscado.CodigoFipe);
             Assert.AreEqual(anoEsperado, veiculoBuscado.AnoModelo);
             Assert.AreEqual(combustivelEsperado, veiculoBuscado.DescricaoCombustivel);
